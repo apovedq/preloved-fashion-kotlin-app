@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "398315064571",
+    "project_id": "preloved-fashion-kotlin-app",
+    "storage_bucket": "preloved-fashion-kotlin-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398315064571:android:7fbed213076c6e2a5cf45e",
+        "android_client_info": {
+          "package_name": "com.example.firebase_config"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlwjSaOubJkuHj5wrxrAgt7Qw1ONooSX0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
