@@ -2,16 +2,18 @@ package com.example.firebase_config.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.firebase_config.model.repository.PostRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainViewModel: ViewModel() {
-    companion object {
-        const val GET_ALL_POST = "/posts"
-    }
+class FeedViewModel: ViewModel() {
+    private val postRepository = PostRepository()
 
-    fun getPosts(){
+
+
+    fun downloadPosts(){
         viewModelScope.launch(Dispatchers.IO) {
+            val postsResponse = postRepository.getFeed()
         }
     }
 }

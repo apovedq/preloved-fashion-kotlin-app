@@ -11,4 +11,6 @@ data class Post (
     var size: String,
     var title: String,
     var userId: String
-)
+){
+    constructor() : this("", "", "", "", 0, "", "", "", "", "")
+}
