@@ -1,5 +1,7 @@
 package com.example.firebase_config
 
+import PostAdapterFeed
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -14,9 +16,17 @@ class FeedActivity : AppCompatActivity() {
         ActivityFeedBinding.inflate(layoutInflater)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
         viewModel.downloadPosts()
+
+        viewModel.feed.observe(this){posts ->
+            val adapter = PostAdapterFeed(posts)
+            binding.feedRecyclerView.adapter = adapter
+            adapter.notifyDataSetChanged()
+        }
     }
 }

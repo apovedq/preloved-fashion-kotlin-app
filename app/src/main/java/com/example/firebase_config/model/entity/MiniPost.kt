@@ -3,7 +3,7 @@ package com.example.firebase_config.model.entity
 data class MiniPost (
     var image: String,
     var title: String,
-    var fashionPoints: Int
+    var fashionPoints: String
 ){
-    constructor() : this("", "", 0)
+    constructor() : this("", "", "")
 }
