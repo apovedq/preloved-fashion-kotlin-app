@@ -19,7 +19,7 @@ class SignInActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-
+        //Login function
         binding.logInBTN.setOnClickListener {
             val userEmail = binding.editMailPT.text.toString()
             val pass = binding.editPasswordPT.text.toString()
@@ -46,5 +46,22 @@ class SignInActivity : AppCompatActivity() {
                 Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
             }
         }
+
+        //Forgot password function
+        binding.forgotPassTV.setOnClickListener {
+
+            val currentMail = binding.editMailPT.text.toString()
+            if(currentMail != "") {
+                //Falta añadir verificacion, que el correo si este registrado en los usuarios
+
+                Firebase.auth.sendPasswordResetEmail(currentMail)
+                    .addOnSuccessListener { Toast.makeText(this, "Le hemos enviado las indicaciones para restablecer su contraseña a $currentMail", Toast.LENGTH_LONG).show()}
+                    .addOnFailureListener{  Toast.makeText(this, it.message, Toast.LENGTH_LONG).show() }
+            } else {
+                Toast.makeText(this, "Escriba su correo en el area indicada para cambiar la contraseña", Toast.LENGTH_LONG).show()
+            }
+
+        }
+
     }
 }
