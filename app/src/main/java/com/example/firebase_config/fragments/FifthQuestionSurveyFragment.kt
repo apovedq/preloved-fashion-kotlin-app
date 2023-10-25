@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.example.firebase_config.CreatePostActivity
 import com.example.firebase_config.databinding.FifthQuestionSurveyFragmentBinding
 import com.example.firebase_config.databinding.PostInformationFragmentBinding
 import com.example.firebase_config.viewModel.PostViewModel
@@ -22,9 +23,9 @@ class FifthQuestionSurveyFragment : Fragment() {
         binding = FifthQuestionSurveyFragmentBinding.inflate(inflater, container, false)
 
         binding.calculateFPsBtn.setOnClickListener {
-            //Pantalla de puntaje final!!!
+            val createPostActivity = activity as CreatePostActivity
+            createPostActivity.loadFragment(createPostActivity.totalScoreSurveyFragment)
         }
-
         return binding.root
     }
 

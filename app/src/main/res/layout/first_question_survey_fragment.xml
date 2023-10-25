@@ -19,7 +19,7 @@
             android:background="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/close_24px" />
+            app:srcCompat="@drawable/arrow_back_24px" />
 
         <ImageButton
             android:id="@+id/imageButton4"
