@@ -10,6 +10,7 @@ import com.example.firebase_config.fragments.FourthQuestionSurveyFragment
 import com.example.firebase_config.fragments.PostInformationFragment
 import com.example.firebase_config.fragments.SecondQuestionSurveyFragment
 import com.example.firebase_config.fragments.ThirdQuestionSurveyFragment
+import com.example.firebase_config.fragments.TotalScoreSurveyFragment
 
 class CreatePostActivity : AppCompatActivity() {
 
@@ -34,6 +35,9 @@ class CreatePostActivity : AppCompatActivity() {
     }
     val fifthQuestionSurveyFragment by lazy{
         FifthQuestionSurveyFragment.newInstance()
+    }
+    val totalScoreSurveyFragment by lazy{
+        TotalScoreSurveyFragment.newInstance()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
