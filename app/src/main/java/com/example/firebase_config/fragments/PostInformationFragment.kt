@@ -123,21 +123,51 @@ class PostInformationFragment: Fragment() {
 
         binding.FPSurveyBtn.setOnClickListener {
 
-            val post = Post()
-            post.category = binding.categorySpinner.selectedItem.toString()
-            post.gender = binding.genderSpinner.selectedItem.toString()
-            post.name = binding.nameTxt.editableText.toString()
-            post.brand = binding.brandTxt.editableText.toString()
-            post.size = binding.sizeSpinner.selectedItem.toString()
-            post.description= binding.descriptionTxt.editableText.toString()
+            if(validateForm()){
+                val post = Post()
+                post.category = binding.categorySpinner.selectedItem.toString()
+                post.gender = binding.genderSpinner.selectedItem.toString()
+                post.name = binding.nameTxt.editableText.toString()
+                post.brand = binding.brandTxt.editableText.toString()
+                post.size = binding.sizeSpinner.selectedItem.toString()
+                post.description= binding.descriptionTxt.editableText.toString()
 
-            vm.createPost(post)
+                vm.createPost(post)
 
-            val createPostActivity = activity as CreatePostActivity
-            createPostActivity.loadFragment(createPostActivity.firstQuestionSurveyFragment)
+                val createPostActivity = activity as CreatePostActivity
+                createPostActivity.loadFragment(createPostActivity.firstQuestionSurveyFragment)
+            }
+
         }
         return binding.root
     }
+
+    private fun validateForm(): Boolean {
+        var isValid = true
+        with(binding) {
+            when {
+                nameTxt.text.toString().isBlank() -> {
+                    isValid = false
+                    nameTxt.error =
+                        getString(com.example.firebase_config.R.string.form_required_field)
+                }
+
+                brandTxt.text.toString().isBlank() -> {
+                    isValid = false
+                    brandTxt.error =
+                        getString(com.example.firebase_config.R.string.form_required_field)
+                }
+
+                descriptionTxt.text.toString().isBlank() -> {
+                    isValid = false
+                    descriptionTxt.error =
+                        getString(com.example.firebase_config.R.string.form_required_field)
+                }
+            }
+        }
+        return isValid
+    }
+
 
     companion object{
         fun newInstance(): PostInformationFragment {

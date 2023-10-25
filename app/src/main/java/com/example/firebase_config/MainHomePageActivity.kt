@@ -18,6 +18,7 @@ class MainHomePageActivity : AppCompatActivity() {
         binding.createPostBtn.setOnClickListener {
             val intent: Intent = Intent(this, CreatePostActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
     }
