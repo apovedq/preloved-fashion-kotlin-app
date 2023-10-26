@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Firebase-config</string>
+    <string name="form_required_field">Campo requerido.</string>
 </resources>

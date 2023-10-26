@@ -1,7 +1,14 @@
 package com.example.firebase_config
 
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.provider.Settings
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.firebase_config.databinding.ActivityCreatePostBinding
 import com.example.firebase_config.fragments.FifthQuestionSurveyFragment
@@ -44,7 +51,42 @@ class CreatePostActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        loadFragment(postInformationFragment)
+        requestPermissions(arrayOf(
+            Manifest.permission.CAMERA,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        ), 1)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == 1) {
+
+            var allGrant = true
+            for (result in grantResults) {
+                if (result == PackageManager.PERMISSION_DENIED) allGrant = false
+            }
+
+            if (allGrant) {
+                loadFragment(postInformationFragment)
+            } else {
+                AlertDialog.Builder(this).apply {
+                    setTitle("Aceptar permisos")
+                    setMessage("Debe aceptar los permisos solicitados para poder continuar, lo dirigiremos a ajustes para que los actualice.")
+                    setPositiveButton("Ok") { _, _ ->
+                        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                        intent.data = Uri.fromParts("package", packageName, null)
+                        startActivity(intent)
+                        loadFragment(postInformationFragment)
+                    }
+                }.show()
+            }
+
+        }
     }
 
     fun loadFragment(fragment: Fragment){
