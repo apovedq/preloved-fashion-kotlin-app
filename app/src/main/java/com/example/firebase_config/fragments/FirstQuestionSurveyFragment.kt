@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.firebase_config.CreatePostActivity
 import com.example.firebase_config.databinding.FirstQuestionSurveyFragmentBinding
-import com.example.firebase_config.databinding.PostInformationFragmentBinding
 import com.example.firebase_config.viewModel.PostViewModel
 
 class FirstQuestionSurveyFragment : Fragment() {
