@@ -13,7 +13,6 @@ import com.example.firebase_config.viewModel.PostViewModel
 
 class FourthQuestionSurveyFragment : Fragment() {
     private lateinit var binding: FourthQuestionSurveyFragmentBinding
-    private val vm : PostViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -22,7 +21,15 @@ class FourthQuestionSurveyFragment : Fragment() {
         binding = FourthQuestionSurveyFragmentBinding.inflate(inflater, container, false)
 
         binding.question5Btn.setOnClickListener {
+
+            val bundle = arguments ?: Bundle()
+            val progress = bundle.getInt("progress")
+            val newProgress = progress+binding.seekBar4Q.progress
+            bundle.putInt("progress", newProgress)
+            arguments = bundle
+
             val createPostActivity = activity as CreatePostActivity
+            createPostActivity.fifthQuestionSurveyFragment.arguments = bundle
             createPostActivity.loadFragment(createPostActivity.fifthQuestionSurveyFragment)
         }
         return binding.root

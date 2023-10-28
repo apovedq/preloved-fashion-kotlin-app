@@ -1,6 +1,7 @@
 package com.example.firebase_config.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,6 @@ import com.example.firebase_config.viewModel.PostViewModel
 
 class SecondQuestionSurveyFragment : Fragment() {
     private lateinit var binding: SecondQuestionSurveyFragmentBinding
-    private val vm : PostViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -22,7 +22,15 @@ class SecondQuestionSurveyFragment : Fragment() {
         binding = SecondQuestionSurveyFragmentBinding.inflate(inflater, container, false)
 
         binding.question3Btn.setOnClickListener {
+
+            val bundle = arguments ?: Bundle()
+            val progress = bundle.getInt("progress")
+            val newProgress = progress+binding.seekBar2Q.progress
+            bundle.putInt("progress", newProgress)
+            arguments = bundle
+
             val createPostActivity = activity as CreatePostActivity
+            createPostActivity.thirdQuestionSurveyFragment.arguments = bundle
             createPostActivity.loadFragment(createPostActivity.thirdQuestionSurveyFragment)
         }
 

@@ -8,8 +8,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="-98dp"
-        tools:layout_editor_absoluteY="130dp">
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="-141dp">
 
         <ImageButton
             android:id="@+id/imageButton3"
@@ -64,42 +64,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
-        <SeekBar
-            android:id="@+id/seekBar2"
-            style="@null"
-            android:layout_width="324dp"
-            android:layout_height="17dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="35dp"
-            android:contextClickable="false"
-            android:max="6"
-            android:progress="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView18" />
-
         <TextView
             android:id="@+id/textView19"
             android:layout_width="55dp"
             android:layout_height="48dp"
             android:layout_marginStart="35dp"
-            android:layout_marginTop="8dp"
             android:text="Menos de 1 año"
             android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar2" />
+            app:layout_constraintTop_toBottomOf="@+id/seekBar5Q" />
 
         <TextView
             android:id="@+id/textView20"
             android:layout_width="49dp"
             android:layout_height="38dp"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="35dp"
             android:text="Más de 5 años"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar2" />
+            app:layout_constraintTop_toBottomOf="@+id/seekBar5Q" />
 
         <Button
             android:id="@+id/calculateFPsBtn"
@@ -121,6 +104,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView13"
             app:srcCompat="@drawable/numero_5" />
+
+        <SeekBar
+            android:id="@+id/seekBar5Q"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="35dp"
+            android:max="5"
+            android:progress="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

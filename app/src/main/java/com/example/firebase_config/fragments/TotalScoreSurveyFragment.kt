@@ -12,13 +12,14 @@ import com.example.firebase_config.viewModel.PostViewModel
 class TotalScoreSurveyFragment : Fragment() {
     private lateinit var binding: TotalScoreSurveyFragmentBinding
     private val vm : PostViewModel by activityViewModels()
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = TotalScoreSurveyFragmentBinding.inflate(inflater, container, false)
+
+        binding.scoreTV.text = vm.getFashionPoints().toString()
 
         binding.endBtn.setOnClickListener {
             //Pantalla de perfil!!!
