@@ -1,16 +1,12 @@
 package com.example.firebase_config.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import com.example.firebase_config.CreatePostActivity
-import com.example.firebase_config.databinding.PostInformationFragmentBinding
 import com.example.firebase_config.databinding.SecondQuestionSurveyFragmentBinding
-import com.example.firebase_config.viewModel.PostViewModel
 
 class SecondQuestionSurveyFragment : Fragment() {
     private lateinit var binding: SecondQuestionSurveyFragmentBinding

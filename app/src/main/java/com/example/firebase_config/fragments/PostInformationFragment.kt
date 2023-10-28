@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.firebase_config.CreatePostActivity
 import com.example.firebase_config.databinding.PostInformationFragmentBinding
-import com.example.firebase_config.model.dto.Post
 import com.example.firebase_config.viewModel.PostViewModel
+import java.util.UUID
 
 class PostInformationFragment: Fragment() {
 
@@ -124,15 +124,15 @@ class PostInformationFragment: Fragment() {
         binding.FPSurveyBtn.setOnClickListener {
 
             if(validateForm()){
-                val post = Post()
-                post.category = binding.categorySpinner.selectedItem.toString()
-                post.gender = binding.genderSpinner.selectedItem.toString()
-                post.name = binding.nameTxt.editableText.toString()
-                post.brand = binding.brandTxt.editableText.toString()
-                post.size = binding.sizeSpinner.selectedItem.toString()
-                post.description= binding.descriptionTxt.editableText.toString()
 
-                vm.createPost(post)
+                vm.collectPostInformation(
+                    binding.categorySpinner.selectedItem.toString(),
+                    binding.genderSpinner.selectedItem.toString(),
+                    binding.nameTxt.editableText.toString(),
+                    binding.brandTxt.editableText.toString(),
+                    binding.sizeSpinner.selectedItem.toString(),
+                    binding.descriptionTxt.editableText.toString()
+                )
 
                 val createPostActivity = activity as CreatePostActivity
                 createPostActivity.loadFragment(createPostActivity.firstQuestionSurveyFragment)
