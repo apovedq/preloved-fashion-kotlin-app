@@ -21,7 +21,7 @@ class FeedViewModel: ViewModel() {
 
     fun downloadPosts(){
         viewModelScope.launch(Dispatchers.IO) {
-            val posts = postRepository.getFeed()
+            val posts = postRepository.getPosts()
 
             val querySnapshot = posts.get().await()
             val postsList = mutableListOf<MiniPost>()
@@ -29,8 +29,11 @@ class FeedViewModel: ViewModel() {
             for (document in querySnapshot.documents){
                 val post = document.toObject(Post::class.java)
                 val tempPost = MiniPost()
+
                 post?.let {
-                    tempPost.image = post.image
+                    val url = postRepository.getImage(post.image).toString()
+
+                    tempPost.image = url
                     tempPost.title = post.title
                     tempPost.fashionPoints = "  ${post.fashionPoints} FP"
                     postsList.add(tempPost)
