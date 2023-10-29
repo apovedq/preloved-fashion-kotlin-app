@@ -31,13 +31,22 @@ override fun onCreateView(
             val name= binding.nameTI.text.toString()
             val email = binding.emailTI.text.toString()
             val password = binding.passwordTI.text.toString()
-            vm.signupWithEmail(
-                name,
-                email,
-                password
-            )
-            val authActivity = activity as AuthActivity
-            authActivity.loadFragment(authActivity.usernameFragment)
+            val confirmPassword = binding.confirmPasswordTI.text.toString()
+
+            val passChecked = vm.checkPass(password, confirmPassword)
+
+            if (!passChecked){
+                Toast.makeText(requireContext(), "Contraseñas no coinciden", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            } else {
+                vm.signupWithEmail(
+                    name,
+                    email,
+                    password
+                )
+                val authActivity = activity as AuthActivity
+                authActivity.loadFragment(authActivity.usernameFragment)
+            }
         }
 
         vm.authStateLV.observe(viewLifecycleOwner){ state ->

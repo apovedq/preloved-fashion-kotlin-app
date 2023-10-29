@@ -78,8 +78,11 @@ class AuthViewModel : ViewModel() {
                 try {
                     val result = Firebase.auth.signInWithEmailAndPassword(email, pass).await()
                     Log.e(">>>", "Loggeado")
+                    withContext(Dispatchers.Main) {
+                        authStateLV.value = AuthState(result.user?.uid, true)
+                    }
                 } catch (e: Exception) {
-                    Log.e(">>>", "Error")
+                    Log.e(">>>", e.message.toString())
                 }
             }
         }
@@ -104,6 +107,17 @@ class AuthViewModel : ViewModel() {
                     .update("username", username).await()
             }
         }
+
+
+    fun checkPass(pass: String, confirmPass: String): Boolean{
+        var samePass = true
+        val pass = pass
+        val confirmPass = confirmPass
+        if(pass != confirmPass){
+            samePass = false
+        }
+        return samePass
+    }
 }
 
 data class AuthState(
