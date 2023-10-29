@@ -23,7 +23,7 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(Intent(this@SplashActivity, AuthActivity::class.java))
                 finish()
             } else {
-                //Aqui iria la pantalla de feed
+                startActivity(Intent(this@SplashActivity, AuthActivity::class.java))
             }
 
         }
