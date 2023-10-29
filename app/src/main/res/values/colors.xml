@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="white_soft">#F4F4F4</color>
-    <color name="purple">#947EFF</color>
     <color name="black_soft">#131313</color>
+    <color name="font">#262626</color>
+    <color name="purple">#5F4BC4</color>
 </resources>

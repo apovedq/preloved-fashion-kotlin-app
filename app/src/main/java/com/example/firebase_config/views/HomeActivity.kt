@@ -1,11 +1,12 @@
-package com.example.firebase_config
+package com.example.firebase_config.views
 
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.firebase_config.R
 import com.example.firebase_config.databinding.ActivityHomeBinding
-import com.example.firebase_config.fragment.FeedFragment
+import com.example.firebase_config.views.fragment.feed.FeedFragment
 
 class HomeActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.example.firebase_config.fragment
+package com.example.firebase_config.views.fragment.feed
 
 import PostAdapterFeed
 import android.annotation.SuppressLint
@@ -8,13 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import com.example.firebase_config.databinding.FeedFragmentBinding
-import com.example.firebase_config.viewModel.FeedViewModel
+import com.example.firebase_config.viewmodels.FeedViewModel
 
 class FeedFragment : Fragment() {
 
-    private val viewModel:FeedViewModel by activityViewModels()
+    private val viewModel: FeedViewModel by activityViewModels()
 
     private lateinit var binding:FeedFragmentBinding
 

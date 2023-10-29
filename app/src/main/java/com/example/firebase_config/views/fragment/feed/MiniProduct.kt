@@ -1,4 +1,4 @@
-package com.example.firebase_config
+package com.example.firebase_config.views.fragment.feed
 
 import android.os.Bundle
 import android.view.LayoutInflater
