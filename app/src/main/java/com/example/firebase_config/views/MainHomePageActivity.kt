@@ -1,10 +1,10 @@
-package com.example.firebase_config
+package com.example.firebase_config.views
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.firebase_config.CreatePostActivity
 import com.example.firebase_config.databinding.ActivityMainHomePageBinding
-
 class MainHomePageActivity : AppCompatActivity() {
 
     private val binding: ActivityMainHomePageBinding by lazy {
