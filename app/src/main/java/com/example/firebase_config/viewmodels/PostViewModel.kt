@@ -1,4 +1,4 @@
-package com.example.firebase_config.viewModel
+package com.example.firebase_config.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

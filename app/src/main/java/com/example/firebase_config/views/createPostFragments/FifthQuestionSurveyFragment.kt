@@ -1,16 +1,14 @@
-package com.example.firebase_config.fragments
+package com.example.firebase_config.views.createPostFragments
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.firebase_config.CreatePostActivity
+import com.example.firebase_config.views.CreatePostActivity
 import com.example.firebase_config.databinding.FifthQuestionSurveyFragmentBinding
-import com.example.firebase_config.viewModel.PostViewModel
+import com.example.firebase_config.viewmodels.PostViewModel
 
 class FifthQuestionSurveyFragment : Fragment() {
     private lateinit var binding: FifthQuestionSurveyFragmentBinding
@@ -37,7 +35,7 @@ class FifthQuestionSurveyFragment : Fragment() {
     }
 
     companion object{
-        fun newInstance(): FifthQuestionSurveyFragment{
+        fun newInstance(): FifthQuestionSurveyFragment {
             return FifthQuestionSurveyFragment()
         }
     }

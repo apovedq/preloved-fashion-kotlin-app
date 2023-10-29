@@ -1,4 +1,4 @@
-package com.example.firebase_config.fragments
+package com.example.firebase_config.views.createPostFragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.firebase_config.databinding.TotalScoreSurveyFragmentBinding
-import com.example.firebase_config.viewModel.PostViewModel
+import com.example.firebase_config.viewmodels.PostViewModel
 
 class TotalScoreSurveyFragment : Fragment() {
     private lateinit var binding: TotalScoreSurveyFragmentBinding
@@ -29,7 +29,7 @@ class TotalScoreSurveyFragment : Fragment() {
     }
 
     companion object{
-        fun newInstance(): TotalScoreSurveyFragment{
+        fun newInstance(): TotalScoreSurveyFragment {
             return TotalScoreSurveyFragment()
         }
     }

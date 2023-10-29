@@ -1,8 +1,7 @@
-package com.example.firebase_config.fragments
+package com.example.firebase_config.views.createPostFragments
 
 import android.R
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,10 +13,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
-import com.example.firebase_config.CreatePostActivity
+import com.example.firebase_config.views.CreatePostActivity
 import com.example.firebase_config.databinding.PostInformationFragmentBinding
-import com.example.firebase_config.viewModel.PostViewModel
-import java.util.UUID
+import com.example.firebase_config.viewmodels.PostViewModel
 
 class PostInformationFragment: Fragment() {
 

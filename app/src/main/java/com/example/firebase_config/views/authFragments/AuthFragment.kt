@@ -1,4 +1,4 @@
-package com.example.firebase_config.views.fragments
+package com.example.firebase_config.views.authFragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

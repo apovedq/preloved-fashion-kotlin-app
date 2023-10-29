@@ -52,7 +52,7 @@
             android:name=".views.MainHomePageActivity"
             android:exported="false"/>
         <activity
-            android:name=".CreatePostActivity"
+            android:name=".views.CreatePostActivity"
             android:exported="false"/>
     </application>
 

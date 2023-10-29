@@ -1,4 +1,4 @@
-package com.example.firebase_config
+package com.example.firebase_config.views
 
 
 import android.os.Bundle
@@ -10,14 +10,15 @@ import android.provider.Settings
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.firebase_config.R
 import com.example.firebase_config.databinding.ActivityCreatePostBinding
-import com.example.firebase_config.fragments.FifthQuestionSurveyFragment
-import com.example.firebase_config.fragments.FirstQuestionSurveyFragment
-import com.example.firebase_config.fragments.FourthQuestionSurveyFragment
-import com.example.firebase_config.fragments.PostInformationFragment
-import com.example.firebase_config.fragments.SecondQuestionSurveyFragment
-import com.example.firebase_config.fragments.ThirdQuestionSurveyFragment
-import com.example.firebase_config.fragments.TotalScoreSurveyFragment
+import com.example.firebase_config.views.createPostFragments.FifthQuestionSurveyFragment
+import com.example.firebase_config.views.createPostFragments.FirstQuestionSurveyFragment
+import com.example.firebase_config.views.createPostFragments.FourthQuestionSurveyFragment
+import com.example.firebase_config.views.createPostFragments.PostInformationFragment
+import com.example.firebase_config.views.createPostFragments.SecondQuestionSurveyFragment
+import com.example.firebase_config.views.createPostFragments.ThirdQuestionSurveyFragment
+import com.example.firebase_config.views.createPostFragments.TotalScoreSurveyFragment
 
 class CreatePostActivity : AppCompatActivity() {
 
