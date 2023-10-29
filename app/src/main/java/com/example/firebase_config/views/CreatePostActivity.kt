@@ -12,13 +12,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.firebase_config.R
 import com.example.firebase_config.databinding.ActivityCreatePostBinding
-import com.example.firebase_config.views.createPostFragments.FifthQuestionSurveyFragment
-import com.example.firebase_config.views.createPostFragments.FirstQuestionSurveyFragment
-import com.example.firebase_config.views.createPostFragments.FourthQuestionSurveyFragment
-import com.example.firebase_config.views.createPostFragments.PostInformationFragment
-import com.example.firebase_config.views.createPostFragments.SecondQuestionSurveyFragment
-import com.example.firebase_config.views.createPostFragments.ThirdQuestionSurveyFragment
-import com.example.firebase_config.views.createPostFragments.TotalScoreSurveyFragment
+import com.example.firebase_config.views.fragment.createPost.FifthQuestionSurveyFragment
+import com.example.firebase_config.views.fragment.createPost.FirstQuestionSurveyFragment
+import com.example.firebase_config.views.fragment.createPost.FourthQuestionSurveyFragment
+import com.example.firebase_config.views.fragment.createPost.PostInformationFragment
+import com.example.firebase_config.views.fragment.createPost.SecondQuestionSurveyFragment
+import com.example.firebase_config.views.fragment.createPost.ThirdQuestionSurveyFragment
+import com.example.firebase_config.views.fragment.createPost.TotalScoreSurveyFragment
 
 class CreatePostActivity : AppCompatActivity() {
 

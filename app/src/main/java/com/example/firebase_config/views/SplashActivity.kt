@@ -23,7 +23,7 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(Intent(this@SplashActivity, AuthActivity::class.java))
                 finish()
             } else {
-                startActivity(Intent(this@SplashActivity, AuthActivity::class.java))
+                startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
             }
 
         }

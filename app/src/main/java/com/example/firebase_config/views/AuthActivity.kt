@@ -3,11 +3,11 @@ package com.example.firebase_config.views
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.firebase_config.views.authFragments.SignInFragment
+import com.example.firebase_config.views.fragment.authentication.SignInFragment
 import com.example.firebase_config.databinding.ActivityAuthBinding
-import com.example.firebase_config.views.authFragments.AuthFragment
-import com.example.firebase_config.views.authFragments.SignupFragment
-import com.example.firebase_config.views.authFragments.UsernameFragment
+import com.example.firebase_config.views.fragment.authentication.AuthFragment
+import com.example.firebase_config.views.fragment.authentication.SignupFragment
+import com.example.firebase_config.views.fragment.authentication.UsernameFragment
 
 class AuthActivity : AppCompatActivity() {
 

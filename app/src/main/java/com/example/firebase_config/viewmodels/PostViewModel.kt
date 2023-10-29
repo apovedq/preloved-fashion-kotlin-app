@@ -2,7 +2,7 @@ package com.example.firebase_config.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.firebase_config.model.Post
+import com.example.firebase_config.model.dto.Post
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase

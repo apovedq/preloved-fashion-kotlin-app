@@ -1,15 +1,10 @@
 package com.example.firebase_config.viewmodels
 
-import android.content.ContentValues
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.firebase_config.model.User
-import com.facebook.AccessToken
-import com.facebook.FacebookSdk
-import com.facebook.FacebookSdk.getApplicationContext
-import com.google.firebase.auth.FacebookAuthProvider
+import com.example.firebase_config.model.entity.User
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException

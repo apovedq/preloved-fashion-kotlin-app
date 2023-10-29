@@ -1,4 +1,4 @@
-package com.example.firebase_config.views.createPostFragments
+package com.example.firebase_config.views.fragment.createPost
 
 import android.R
 import android.content.Intent

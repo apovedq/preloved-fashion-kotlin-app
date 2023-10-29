@@ -1,4 +1,4 @@
-package com.example.firebase_config.views.authFragments
+package com.example.firebase_config.views.fragment.authentication
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.firebase_config.databinding.FragmentSetUsernameBinding
 import com.example.firebase_config.viewmodels.AuthViewModel
-import com.example.firebase_config.views.MainHomePageActivity
+import com.example.firebase_config.views.HomeActivity
 
 class UsernameFragment: Fragment() {
     private lateinit var binding: FragmentSetUsernameBinding
@@ -27,7 +27,7 @@ class UsernameFragment: Fragment() {
 
             vm.authStateLV.observe(viewLifecycleOwner){ state ->
             if(state.isAuth){
-                startActivity(Intent(requireContext(), MainHomePageActivity::class.java)) }
+                startActivity(Intent(requireContext(), HomeActivity::class.java)) }
             }
         }
 

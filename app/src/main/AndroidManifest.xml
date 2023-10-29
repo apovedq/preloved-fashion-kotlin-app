@@ -49,11 +49,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".views.MainHomePageActivity"
+            android:name=".views.HomeActivity"
             android:exported="false"/>
         <activity
             android:name=".views.CreatePostActivity"
             android:exported="false"/>
     </application>
-
 </manifest>

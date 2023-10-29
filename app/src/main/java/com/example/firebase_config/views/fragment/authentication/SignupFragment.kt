@@ -1,4 +1,4 @@
-package com.example.firebase_config.views.authFragments
+package com.example.firebase_config.views.fragment.authentication
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +11,7 @@ import androidx.fragment.app.activityViewModels
 import com.example.firebase_config.databinding.FragmentSignupBinding
 import com.example.firebase_config.viewmodels.AuthViewModel
 import com.example.firebase_config.views.AuthActivity
-import com.example.firebase_config.views.MainHomePageActivity
+import com.example.firebase_config.views.HomeActivity
 
 class SignupFragment : Fragment() {
     private lateinit var binding: FragmentSignupBinding
@@ -51,7 +51,7 @@ override fun onCreateView(
 
         vm.authStateLV.observe(viewLifecycleOwner){ state ->
             if(state.isAuth){
-                startActivity(Intent(requireContext(), MainHomePageActivity::class.java))
+                startActivity(Intent(requireContext(), HomeActivity::class.java))
             }
         }
         vm.errorLV.observe(viewLifecycleOwner){error->
