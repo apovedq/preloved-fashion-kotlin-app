@@ -15,7 +15,7 @@
             android:id="@+id/textView29"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="58dp"
+            android:layout_marginStart="63dp"
             android:text="4"
             app:layout_constraintStart_toEndOf="@+id/textView31"
             app:layout_constraintTop_toBottomOf="@+id/seekBar3Q" />
@@ -24,18 +24,16 @@
             android:id="@+id/textView30"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="58dp"
-            android:layout_marginEnd="68dp"
             android:text="5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView29"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar3Q" />
+            app:layout_constraintTop_toTopOf="@+id/textView31" />
 
         <TextView
             android:id="@+id/textView31"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="58dp"
+            android:layout_marginStart="63dp"
             android:text="3"
             app:layout_constraintStart_toEndOf="@+id/textView32"
             app:layout_constraintTop_toBottomOf="@+id/seekBar3Q" />
@@ -44,7 +42,7 @@
             android:id="@+id/textView32"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="63dp"
             android:text="2"
             app:layout_constraintStart_toEndOf="@+id/textView33"
             app:layout_constraintTop_toBottomOf="@+id/seekBar3Q" />
@@ -53,7 +51,7 @@
             android:id="@+id/textView33"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="68dp"
+            android:layout_marginStart="60dp"
             android:text="1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/seekBar3Q" />
@@ -113,23 +111,61 @@
 
         <TextView
             android:id="@+id/textView19"
-            android:layout_width="62dp"
-            android:layout_height="56dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="15dp"
-            android:text="Faltan muchas piezas"
+            android:layout_width="57dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="10dp"
+            android:text="Incompleta"
             android:textAlignment="center"
+            android:textSize="11sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
         <TextView
+            android:id="@+id/textView23"
+            android:layout_width="55dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:text="Poco completa"
+            android:textAlignment="center"
+            android:textSize="11sp"
+            app:layout_constraintStart_toEndOf="@+id/textView19"
+            app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+        <TextView
+            android:id="@+id/textView52"
+            android:layout_width="66dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:text="Casi completa"
+            android:textAlignment="center"
+            android:textSize="11sp"
+            app:layout_constraintStart_toEndOf="@+id/textView51"
+            app:layout_constraintTop_toBottomOf="@+id/textView29" />
+
+        <TextView
+            android:id="@+id/textView51"
+            android:layout_width="65dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Parcialmente completa"
+            android:textAlignment="center"
+            android:textSize="11sp"
+            app:layout_constraintStart_toEndOf="@+id/textView23"
+            app:layout_constraintTop_toBottomOf="@+id/textView31" />
+
+        <TextView
             android:id="@+id/textView20"
-            android:layout_width="69dp"
-            android:layout_height="57dp"
-            android:layout_marginTop="15dp"
+            android:layout_width="65dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="40dp"
             android:text="Tiene todas las piezas"
             android:textAlignment="center"
+            android:textSize="11sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
@@ -137,11 +173,11 @@
             android:id="@+id/question4Btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="32dp"
             android:text="Continuar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+            app:layout_constraintTop_toBottomOf="@+id/textView52" />
 
         <ImageView
             android:id="@+id/imageView5"
@@ -157,13 +193,13 @@
         <SeekBar
             android:id="@+id/seekBar3Q"
             style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="300dp"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="35dp"
-            android:max="5"
-            android:progress="1"
+            android:max="4"
+            android:progress="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView18" />

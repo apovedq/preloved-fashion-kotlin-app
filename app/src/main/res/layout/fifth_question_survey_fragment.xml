@@ -8,8 +8,54 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="-141dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:id="@+id/textView58"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="58dp"
+            android:text="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar5Q" />
+
+        <TextView
+            android:id="@+id/textView59"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="65dp"
+            android:text="2"
+            app:layout_constraintStart_toEndOf="@+id/textView58"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar5Q" />
+
+        <TextView
+            android:id="@+id/textView60"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="63dp"
+            android:text="3"
+            app:layout_constraintStart_toEndOf="@+id/textView59"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar5Q" />
+
+        <TextView
+            android:id="@+id/textView61"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="63dp"
+            android:text="4"
+            app:layout_constraintStart_toEndOf="@+id/textView60"
+            app:layout_constraintTop_toTopOf="@+id/textView60" />
+
+        <TextView
+            android:id="@+id/textView62"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView61"
+            app:layout_constraintTop_toTopOf="@+id/textView60" />
 
         <ImageButton
             android:id="@+id/imageButton3"
@@ -58,31 +104,86 @@
             android:layout_marginStart="35dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="35dp"
-            android:text="¿Hace cuanto compraste la prenda?"
+            android:text="¿Hace cuanto adquiriste la prenda?"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
         <TextView
-            android:id="@+id/textView19"
-            android:layout_width="55dp"
-            android:layout_height="48dp"
+            android:id="@+id/textView57"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
-            android:text="Menos de 1 año"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="35dp"
+            android:text="Por favor elige la opción más cercana"
             android:textAlignment="center"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar5Q" />
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="50dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:text="Menos de 1 mes"
+            android:textAlignment="center"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView58" />
+
+        <TextView
+            android:id="@+id/textView53"
+            android:layout_width="48dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="6 meses"
+            android:textAlignment="center"
+            android:textSize="11sp"
+            app:layout_constraintStart_toEndOf="@+id/textView19"
+            app:layout_constraintTop_toBottomOf="@+id/textView59" />
+
+        <TextView
+            android:id="@+id/textView55"
+            android:layout_width="35dp"
+            android:layout_height="14dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:text="1 año"
+            android:textAlignment="center"
+            android:textSize="11sp"
+            app:layout_constraintStart_toEndOf="@+id/textView53"
+            app:layout_constraintTop_toBottomOf="@+id/textView60" />
 
         <TextView
             android:id="@+id/textView20"
-            android:layout_width="49dp"
-            android:layout_height="38dp"
-            android:layout_marginEnd="35dp"
+            android:layout_width="38dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="10dp"
+            android:text="5 años"
+            android:textAlignment="center"
+            android:textSize="11sp"
+            app:layout_constraintStart_toEndOf="@+id/textView55"
+            app:layout_constraintTop_toBottomOf="@+id/textView61" />
+
+        <TextView
+            android:id="@+id/textView56"
+            android:layout_width="38dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="45dp"
             android:text="Más de 5 años"
             android:textAlignment="center"
+            android:textSize="11sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar5Q" />
+            app:layout_constraintTop_toBottomOf="@+id/textView62" />
 
         <Button
             android:id="@+id/calculateFPsBtn"
@@ -108,16 +209,16 @@
         <SeekBar
             android:id="@+id/seekBar5Q"
             style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="300dp"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="35dp"
-            android:max="5"
-            android:progress="1"
+            android:max="4"
+            android:progress="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+            app:layout_constraintTop_toBottomOf="@+id/textView57" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

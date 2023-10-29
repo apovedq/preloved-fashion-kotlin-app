@@ -1,9 +1,11 @@
 package com.example.firebase_config.fragments
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.firebase_config.CreatePostActivity
@@ -13,6 +15,7 @@ import com.example.firebase_config.viewModel.PostViewModel
 class FifthQuestionSurveyFragment : Fragment() {
     private lateinit var binding: FifthQuestionSurveyFragmentBinding
     private val vm : PostViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,7 +27,7 @@ class FifthQuestionSurveyFragment : Fragment() {
 
             val bundle = arguments ?: Bundle()
             val progress = bundle.getInt("progress")
-            val totalProgress = progress+binding.seekBar5Q.progress
+            val totalProgress = progress+binding.seekBar5Q.progress+1
             vm.calculateScore(totalProgress)
 
             val createPostActivity = activity as CreatePostActivity

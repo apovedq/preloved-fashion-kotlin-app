@@ -1,15 +1,19 @@
 package com.example.firebase_config.fragments
 
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.firebase_config.CreatePostActivity
 import com.example.firebase_config.databinding.SecondQuestionSurveyFragmentBinding
 
 class SecondQuestionSurveyFragment : Fragment() {
     private lateinit var binding: SecondQuestionSurveyFragmentBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -21,7 +25,7 @@ class SecondQuestionSurveyFragment : Fragment() {
 
             val bundle = arguments ?: Bundle()
             val progress = bundle.getInt("progress")
-            val newProgress = progress+binding.seekBar2Q.progress
+            val newProgress = progress+(binding.seekBar2Q.progress+1)
             bundle.putInt("progress", newProgress)
             arguments = bundle
 
