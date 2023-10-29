@@ -1,14 +1,19 @@
 package com.example.firebase_config.fragments
 
 import android.R
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.bumptech.glide.Glide
 import com.example.firebase_config.CreatePostActivity
 import com.example.firebase_config.databinding.PostInformationFragmentBinding
 import com.example.firebase_config.viewModel.PostViewModel
@@ -121,6 +126,26 @@ class PostInformationFragment: Fragment() {
             }
         }
 
+        var currentUri: Any = "";
+
+        //Function to open the img
+        fun onGalleryResult(result: ActivityResult){
+            val uri = result.data?.data
+            uri?.let {
+                currentUri = it
+            }
+            Glide.with(this).load(uri).into(binding.productImgIB)
+        }
+
+        val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), ::onGalleryResult)
+
+
+        binding.productImgIB.setOnClickListener{
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.type = "image/*"
+            launcher.launch(intent)
+        }
+
         binding.FPSurveyBtn.setOnClickListener {
 
             if(validateForm()){
@@ -131,7 +156,8 @@ class PostInformationFragment: Fragment() {
                     binding.nameTxt.editableText.toString(),
                     binding.brandTxt.editableText.toString(),
                     binding.sizeSpinner.selectedItem.toString(),
-                    binding.descriptionTxt.editableText.toString()
+                    binding.descriptionTxt.editableText.toString(),
+                    currentUri.toString()
                 )
 
                 val createPostActivity = activity as CreatePostActivity

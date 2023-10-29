@@ -26,7 +26,8 @@ class PostViewModel : ViewModel(){
         title: String,
         brand: String,
         size: String,
-        description: String
+        description: String,
+        image: String
     ) {
         newPost.postId = UUID.randomUUID().toString()
         newPost.category = category
@@ -35,6 +36,7 @@ class PostViewModel : ViewModel(){
         newPost.brand = brand
         newPost.size = size
         newPost.description = description
+        newPost.image = image
         newPost.userId = Firebase.auth.currentUser?.uid.toString()
     }
 
