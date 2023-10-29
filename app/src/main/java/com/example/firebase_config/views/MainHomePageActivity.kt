@@ -1,7 +1,8 @@
-package com.example.firebase_config
+package com.example.firebase_config.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.firebase_config.R
 
 class MainHomePageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
