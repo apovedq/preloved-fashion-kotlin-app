@@ -1,6 +1,7 @@
 package com.example.firebase_config.viewModel
 
 import android.util.Log
+import android.webkit.URLUtil
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -31,12 +32,19 @@ class FeedViewModel: ViewModel() {
                 val tempPost = MiniPost()
 
                 post?.let {
-                    val url = postRepository.getImage(post.image).toString()
+                    var url = ""
+                    try {
+                        url = postRepository.getImage(post.image).toString()
+                    }catch (e: Exception){
+                        Log.e(">>>", e.message.toString())
+                    }
 
-                    tempPost.image = url
-                    tempPost.title = post.title
-                    tempPost.fashionPoints = "  ${post.fashionPoints} FP"
-                    postsList.add(tempPost)
+                    if(isURLValid(url)){
+                        tempPost.image = url
+                        tempPost.title = post.title
+                        tempPost.fashionPoints = "  ${post.fashionPoints} FP"
+                        postsList.add(tempPost)
+                    }
                 }
             }
 
@@ -44,5 +52,9 @@ class FeedViewModel: ViewModel() {
                 _feed.value = postsList
             }
         }
+    }
+
+    private fun isURLValid(url: String): Boolean {
+        return url.isNotEmpty() && URLUtil.isNetworkUrl(url)
     }
 }
