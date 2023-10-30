@@ -89,6 +89,7 @@
             android:background="@drawable/white_btn"
             android:fontFamily="@font/bold"
             android:text="Continuar con Google"
+            android:textColor="@color/font"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -127,6 +128,7 @@
                     android:fontFamily="@font/bold"
                     android:text="Nombre completo"
                     android:textColor="@color/font"
+                    android:textColorHint="#676767"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -143,7 +145,9 @@
                     android:paddingLeft="20dp"
                     android:paddingTop="10dp"
                     android:paddingRight="20dp"
-                    android:paddingBottom="10dp" />
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/font"
+                    android:textColorHint="#676767" />
 
                 <TextView
                     android:id="@+id/textView12"
@@ -153,6 +157,7 @@
                     android:fontFamily="@font/bold"
                     android:text="Correo electrónico"
                     android:textColor="@color/font"
+                    android:textColorHint="#676767"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -169,7 +174,9 @@
                     android:paddingLeft="20dp"
                     android:paddingTop="10dp"
                     android:paddingRight="20dp"
-                    android:paddingBottom="10dp" />
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/font"
+                    android:textColorHint="#676767" />
 
                 <TextView
                     android:id="@+id/textView13"
@@ -179,6 +186,7 @@
                     android:fontFamily="@font/bold"
                     android:text="Contraseña"
                     android:textColor="@color/font"
+                    android:textColorHint="#676767"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -195,7 +203,9 @@
                     android:paddingLeft="20dp"
                     android:paddingTop="10dp"
                     android:paddingRight="20dp"
-                    android:paddingBottom="10dp" />
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/font"
+                    android:textColorHint="#676767" />
 
                 <TextView
                     android:id="@+id/textView14"
@@ -205,6 +215,7 @@
                     android:fontFamily="@font/bold"
                     android:text="Confirmar contraseña"
                     android:textColor="@color/font"
+                    android:textColorHint="#676767"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -221,7 +232,9 @@
                     android:paddingLeft="20dp"
                     android:paddingTop="10dp"
                     android:paddingRight="20dp"
-                    android:paddingBottom="10dp" />
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/font"
+                    android:textColorHint="#676767" />
 
                 <Button
                     android:id="@+id/registerBtn"

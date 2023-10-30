@@ -39,6 +39,7 @@
             android:background="@drawable/secondary_btn"
             android:fontFamily="@font/bold"
             android:text="INICIA SESIÓN"
+            android:textColor="@color/font"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
