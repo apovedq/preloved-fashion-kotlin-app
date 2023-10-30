@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.firebase_config.model.entity.User
+import com.example.firebase_config.viewmodels.model.AuthState
+import com.example.firebase_config.viewmodels.model.ErrorMessage
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
@@ -110,12 +112,3 @@ class AuthViewModel : ViewModel() {
         return samePass
     }
 }
-
-data class AuthState(
-    var userID: String? = null,
-    var isAuth: Boolean
-)
-
-data class ErrorMessage(
-    var message: String
-)
