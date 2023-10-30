@@ -30,9 +30,6 @@ class UsernameFragment: Fragment() {
                 startActivity(Intent(requireContext(), HomeActivity::class.java)) }
             }
         }
-
-//
-
         return binding.root
     }
 

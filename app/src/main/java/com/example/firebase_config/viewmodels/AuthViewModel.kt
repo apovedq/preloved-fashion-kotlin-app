@@ -14,6 +14,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
+
 class AuthViewModel : ViewModel() {
 
     val authStateLV = MutableLiveData<AuthState>()
@@ -24,7 +25,17 @@ class AuthViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val result = Firebase.auth.createUserWithEmailAndPassword(email, pass).await()
-                val user = User(name, email, Firebase.auth.currentUser!!.uid, "", "", 0, arrayListOf(), "", 0)
+                val user = User(
+                    name,
+                    email,
+                    Firebase.auth.currentUser!!.uid,
+                    "",
+                    "",
+                    0,
+                    arrayListOf(),
+                    "",
+                    0
+                )
                 Firebase.firestore.collection("users")
                     .document(user.userId)
                     .set(user).await()
@@ -53,62 +64,47 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-//    fun signupWithFacebook(token: AccessToken){
-//        FacebookSdk.sdkInitialize(getApplicationContext())
-//        viewModelScope.launch(Dispatchers.IO) {
-//        val credential = FacebookAuthProvider.getCredential(token.token)
-//        Firebase.auth.signInWithCredential(credential).await()
-//        Log.d(ContentValues.TAG, "signInWithCredential:success")
-//        val user = hashMapOf(
-//            "name" to token,
-//            "email" to email,
-//            "id" to Firebase.auth.currentUser?.uid
-//        )
-//            Firebase.auth.currentUser
-//        }
-//    }
-
-        fun signIn(email: String, pass: String) {
-            viewModelScope.launch(Dispatchers.IO) {
-                try {
-                    val result = Firebase.auth.signInWithEmailAndPassword(email, pass).await()
-                    Log.e(">>>", "Loggeado")
-                    withContext(Dispatchers.Main) {
-                        authStateLV.value = AuthState(result.user?.uid, true)
-                    }
-                } catch (e: Exception) {
-                    Log.e(">>>", e.message.toString())
+    fun signIn(email: String, pass: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val result = Firebase.auth.signInWithEmailAndPassword(email, pass).await()
+                Log.e(">>>", "Loggeado")
+                withContext(Dispatchers.Main) {
+                    authStateLV.value = AuthState(result.user?.uid, true)
                 }
+            } catch (e: Exception) {
+                Log.e(">>>", e.message.toString())
             }
         }
+    }
 
-        fun recoverPassword(email: String) {
-            viewModelScope.launch(Dispatchers.IO) {
-                try {
-                    Firebase.auth.sendPasswordResetEmail(email)
-                    Log.e(">>>", "Correo enviado")
-                } catch (e: Exception) {
-                    Log.e(">>>", "Error")
-                }
+    fun recoverPassword(email: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                Firebase.auth.sendPasswordResetEmail(email)
+                Log.e(">>>", "Correo enviado")
+            } catch (e: Exception) {
+                Log.e(">>>", "Error")
             }
         }
+    }
 
-        fun setUsername(username: String) {
-            viewModelScope.launch(Dispatchers.IO) {
-                val uid = Firebase.auth.currentUser?.uid
+    fun setUsername(username: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val uid = Firebase.auth.currentUser?.uid
 
-                Firebase.firestore.collection("users")
-                    .document(uid!!)
-                    .update("username", username).await()
-            }
+            Firebase.firestore.collection("users")
+                .document(uid!!)
+                .update("username", username).await()
         }
+    }
 
 
-    fun checkPass(pass: String, confirmPass: String): Boolean{
+    fun checkPass(pass: String, confirmPass: String): Boolean {
         var samePass = true
         val pass = pass
         val confirmPass = confirmPass
-        if(pass != confirmPass){
+        if (pass != confirmPass) {
             samePass = false
         }
         return samePass
