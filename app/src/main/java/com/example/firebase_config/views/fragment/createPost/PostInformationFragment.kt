@@ -10,8 +10,10 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.firebase_config.views.CreatePostActivity
 import com.example.firebase_config.databinding.PostInformationFragmentBinding
@@ -124,14 +126,15 @@ class PostInformationFragment: Fragment() {
             }
         }
 
-        var currentUri: Any = "";
-
         //Function to open the img
         fun onGalleryResult(result: ActivityResult){
             val uri = result.data?.data
+
+            //Store uri into post view model
             uri?.let {
-                currentUri = it
+                vm.currentUriToStore.value = uri
             }
+
             Glide.with(this).load(uri).into(binding.productImgIB)
         }
 
@@ -155,7 +158,7 @@ class PostInformationFragment: Fragment() {
                     binding.brandTxt.editableText.toString(),
                     binding.sizeSpinner.selectedItem.toString(),
                     binding.descriptionTxt.editableText.toString(),
-                    currentUri.toString()
+                    vm.currentUriToStore.value
                 )
 
                 val createPostActivity = activity as CreatePostActivity
