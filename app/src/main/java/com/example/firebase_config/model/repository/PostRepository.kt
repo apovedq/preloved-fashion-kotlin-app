@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import com.example.firebase_config.model.dto.Post
 import com.example.firebase_config.model.entity.MiniPost
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -24,6 +26,10 @@ class PostRepository {
         return Firebase.firestore.collection(GET_ALL_POST)
     }
 
+    suspend fun getPostsById(postId: String): DocumentSnapshot {
+        return Firebase.firestore.collection("posts").document(postId).get().await()
+    }
+
     suspend fun getImage(imageId: String): Uri? {
         Log.e(">>>", imageId)
         return Firebase.storage.reference
@@ -31,4 +37,5 @@ class PostRepository {
             .child(imageId)
             .downloadUrl.await()
     }
+    
 }
