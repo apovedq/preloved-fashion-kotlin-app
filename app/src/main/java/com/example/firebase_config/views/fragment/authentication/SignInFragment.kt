@@ -1,7 +1,9 @@
 package com.example.firebase_config.views.fragment.authentication
 
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +13,9 @@ import com.example.firebase_config.databinding.FragmentSignInBinding
 import com.example.firebase_config.viewmodels.AuthViewModel
 import com.example.firebase_config.views.AuthActivity
 import com.example.firebase_config.views.HomeActivity
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginResult
 
 class SignInFragment : Fragment() {
 
@@ -39,6 +44,29 @@ class SignInFragment : Fragment() {
             val currentMail = binding.editMailPT.text.toString()
             vm.recoverPassword(currentMail)
         }
+
+        binding.facebookLogInBtn.setFragment(this)
+        val authActivity = activity as AuthActivity
+
+        binding.facebookLogInBtn.registerCallback(
+            authActivity.callbackManager,
+            object : FacebookCallback<LoginResult> {
+                override fun onSuccess(loginResult: LoginResult) {
+                    Log.d(ContentValues.TAG, "facebook:onSuccess:$loginResult")
+                    vm.signInWithFacebook(loginResult.accessToken)
+                    val authActivity = activity as AuthActivity
+                    authActivity.loadFragment(authActivity.usernameFragment)
+                }
+
+                override fun onCancel() {
+                    Log.d(ContentValues.TAG, "facebook:onCancel")
+                }
+
+                override fun onError(error: FacebookException) {
+                    Log.d(ContentValues.TAG, "facebook:onError", error)
+                }
+            },
+        )
 
         vm.authStateLV.observe(viewLifecycleOwner){ state ->
             if(state.isAuth){

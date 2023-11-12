@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:facebook="http://schemas.android.com/apk/res-auto"
     android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -81,31 +82,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-        <Button
-            android:id="@+id/googleBtnRegister"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/white_btn"
-            android:fontFamily="@font/bold"
-            android:text="Continuar con Google"
-            android:textColor="@color/font"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/registerLink" />
-
         <com.facebook.login.widget.LoginButton
             android:id="@+id/facebookBtn"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_width="342dp"
+            android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="32dp"
             android:fontFamily="@font/bold"
+            facebook:com_facebook_login_text="Continuar con Facebook"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/googleBtnRegister" />
+            app:layout_constraintTop_toBottomOf="@+id/registerLink" />
 
         <ScrollView
             android:id="@+id/scrollView2"

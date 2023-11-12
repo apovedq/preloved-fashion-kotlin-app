@@ -8,8 +8,11 @@ import com.example.firebase_config.databinding.ActivityAuthBinding
 import com.example.firebase_config.views.fragment.authentication.AuthFragment
 import com.example.firebase_config.views.fragment.authentication.SignupFragment
 import com.example.firebase_config.views.fragment.authentication.UsernameFragment
+import com.facebook.CallbackManager
 
 class AuthActivity : AppCompatActivity() {
+
+    val callbackManager = CallbackManager.Factory.create();
 
     private val binding by lazy {
         ActivityAuthBinding.inflate(layoutInflater)
