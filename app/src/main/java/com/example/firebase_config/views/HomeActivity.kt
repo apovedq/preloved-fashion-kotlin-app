@@ -1,5 +1,6 @@
 package com.example.firebase_config.views
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
@@ -45,6 +46,13 @@ class HomeActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.navigation_profile->{
                     showFragment(profileFragment)
+                }
+            }
+
+            //Switch to create post activity
+            when(it.itemId){
+                R.id.navigation_create_post->{
+                    startActivity(Intent(this, CreatePostActivity::class.java))
                 }
             }
 
