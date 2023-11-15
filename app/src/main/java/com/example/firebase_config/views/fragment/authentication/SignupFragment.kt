@@ -50,44 +50,45 @@ class SignupFragment : Fragment() {
                     email,
                     password
                 )
+            }
+        }
+
+
+        binding.facebookBtn.setOnClickListener {
+            binding.facebookBtn.setPermissions("email", "public_profile")
+            binding.facebookBtn.setFragment(this)
+            val authActivity = activity as AuthActivity
+
+            binding.facebookBtn.registerCallback(
+                authActivity.callbackManager,
+                object : FacebookCallback<LoginResult> {
+                    override fun onSuccess(loginResult: LoginResult) {
+                        Log.d(TAG, "facebook:onSuccess:$loginResult")
+                        vm.signUpWithFacebbook(loginResult.accessToken, loginResult)
+
+                    }
+
+                    override fun onCancel() {
+                        Log.d(TAG, "facebook:onCancel")
+                    }
+
+                    override fun onError(error: FacebookException) {
+                        Log.d(TAG, "facebook:onError", error)
+                    }
+                },
+            )
+        }
+
+        vm.registerStateLV.observe(viewLifecycleOwner) { state ->
+            if (state.isRegistered) {
                 val authActivity = activity as AuthActivity
                 authActivity.loadFragment(authActivity.usernameFragment)
             }
         }
 
-
-
-        binding.facebookBtn.setPermissions("email", "public_profile")
-        binding.facebookBtn.setFragment(this)
-        val authActivity = activity as AuthActivity
-
-        binding.facebookBtn.registerCallback(
-            authActivity.callbackManager,
-            object : FacebookCallback<LoginResult> {
-                override fun onSuccess(loginResult: LoginResult) {
-                    Log.d(TAG, "facebook:onSuccess:$loginResult")
-                    vm.signUpWithFacebbook(loginResult.accessToken, loginResult)
-                    val authActivity = activity as AuthActivity
-                    authActivity.loadFragment(authActivity.usernameFragment)
-                }
-
-                override fun onCancel() {
-                    Log.d(TAG, "facebook:onCancel")
-                }
-
-                override fun onError(error: FacebookException) {
-                    Log.d(TAG, "facebook:onError", error)
-                }
-            },
-        )
-
-        vm.authStateLV.observe(viewLifecycleOwner) { state ->
-            if (state.isAuth) {
-                startActivity(Intent(requireContext(), HomeActivity::class.java))
-            }
-        }
         vm.errorLV.observe(viewLifecycleOwner) { error ->
             Toast.makeText(requireContext(), error.message, Toast.LENGTH_SHORT).show()
+            Log.e(">>>", error.message)
         }
 
         return binding.root

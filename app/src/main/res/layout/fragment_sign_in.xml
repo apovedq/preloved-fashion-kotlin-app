@@ -63,19 +63,18 @@
 
         <com.facebook.login.widget.LoginButton
             android:id="@+id/facebookLogInBtn"
-            facebook:com_facebook_login_text="Continuar con Facebook"
-            android:layout_width="342dp"
-            android:layout_height="60dp"
+            android:layout_width="307dp"
+            android:layout_height="33dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/bold"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/constraintLayout3"
-            app:layout_constraintVertical_bias="0.25" />
+            app:layout_constraintVertical_bias="0.25"
+            facebook:com_facebook_login_text="Continuar con Facebook" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"

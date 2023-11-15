@@ -84,17 +84,16 @@
 
         <com.facebook.login.widget.LoginButton
             android:id="@+id/facebookBtn"
-            android:layout_width="342dp"
-            android:layout_height="60dp"
+            android:layout_width="307dp"
+            android:layout_height="34dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/bold"
-            facebook:com_facebook_login_text="Continuar con Facebook"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/registerLink" />
+            app:layout_constraintTop_toBottomOf="@+id/registerLink"
+            facebook:com_facebook_login_text="Continuar con Facebook" />
 
         <ScrollView
             android:id="@+id/scrollView2"
