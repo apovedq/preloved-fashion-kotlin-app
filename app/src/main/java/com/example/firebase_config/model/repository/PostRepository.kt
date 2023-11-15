@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.firebase_config.model.dto.Post
 import com.example.firebase_config.model.entity.MiniPost
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -22,6 +23,11 @@ class PostRepository {
 
      fun getPosts(): CollectionReference {
         return Firebase.firestore.collection(GET_ALL_POST)
+    }
+
+    fun getPostsByUserId(userId: String): Query {
+        return Firebase.firestore.collection(GET_ALL_POST)
+            .whereEqualTo("userId", userId)
     }
 
     suspend fun getImage(imageId: String): Uri? {

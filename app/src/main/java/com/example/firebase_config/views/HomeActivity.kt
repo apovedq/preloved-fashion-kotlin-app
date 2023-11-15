@@ -6,11 +6,22 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.firebase_config.R
 import com.example.firebase_config.databinding.ActivityHomeBinding
+import com.example.firebase_config.views.fragment.authentication.AuthFragment
 import com.example.firebase_config.views.fragment.feed.FeedFragment
+import com.example.firebase_config.views.fragment.profile.DescriptionFragment
+import com.example.firebase_config.views.fragment.profile.ProfileFragment
 
 class HomeActivity : AppCompatActivity() {
 
     private val feedFragment = FeedFragment()
+
+    val profileFragment by lazy {
+        ProfileFragment.newInstance()
+    }
+
+    val setDescriptionFragment by lazy {
+        DescriptionFragment.newInstance()
+    }
 
     private val binding:ActivityHomeBinding by lazy {
         ActivityHomeBinding.inflate(layoutInflater)
@@ -20,6 +31,25 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         showFragment(feedFragment)
+
+        //Switch to other screens
+        binding.bottomNavigation.setOnItemSelectedListener {
+            //Switch to home
+            when(it.itemId){
+                R.id.navigation_home->{
+                    showFragment(feedFragment)
+                }
+            }
+
+            //Switch to profile
+            when(it.itemId){
+                R.id.navigation_profile->{
+                    showFragment(profileFragment)
+                }
+            }
+
+            true
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -31,6 +61,13 @@ class HomeActivity : AppCompatActivity() {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragmentContainerFeed, fragment)
+            .commit()
+    }
+
+    fun loadFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainerFeed, fragment)
+            .addToBackStack(null) // Add to back stack if needed
             .commit()
     }
 }
