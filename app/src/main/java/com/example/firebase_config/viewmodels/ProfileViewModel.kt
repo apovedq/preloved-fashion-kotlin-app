@@ -2,10 +2,15 @@ package com.example.firebase_config.viewmodels
 
 import android.net.Uri
 import android.util.Log
+import android.webkit.URLUtil
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.firebase_config.model.dto.Post
+import com.example.firebase_config.model.entity.MiniPost
 import com.example.firebase_config.model.entity.User
+import com.example.firebase_config.model.repository.PostRepository
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -20,6 +25,11 @@ class ProfileViewModel: ViewModel() {
 
     val currentUser = Firebase.auth.currentUser
     val userLD = MutableLiveData<User>()
+
+    private val postRepository = PostRepository()
+    private val _myposts = MutableLiveData<List<MiniPost>>()
+    val myposts: LiveData<List<MiniPost>> get() = _myposts
+
 
     fun uploadImage(uri: Uri) {
         try {
@@ -62,8 +72,18 @@ class ProfileViewModel: ViewModel() {
                 //Get image from storage
                 user?.let {
                     Log.e(">>>", user.toString())
-                    var url = Firebase.storage.reference.child("profileImages")
-                        .child(it.photo).downloadUrl.await()
+
+                    var url: Uri? = null
+                    if (it.photo != null) {
+                        try {
+                            val storageRef = Firebase.storage.reference.child("profileImages")
+                            val imageRef = storageRef.child(it.photo)
+                            url = imageRef.downloadUrl.await()
+                        } catch (e: Exception) {
+                            Log.e(">>>", "Error downloading image: ${e.message}")
+                        }
+                    }
+
 
                     //Add information from firebase to local variable
                     val localUser = User(
@@ -74,7 +94,7 @@ class ProfileViewModel: ViewModel() {
                         it.description,
                         it.exchanges,
                         it.favorite,
-                        url.toString(),
+                        url?.toString() ?: "", // Use an empty string if the URL is null
                         it.rating,
                     )
 
@@ -95,4 +115,43 @@ class ProfileViewModel: ViewModel() {
                 .update("description", des).await()
         }
     }
+
+    fun getPosts(userId: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val posts = postRepository.getPostsByUserId(userId)
+
+            val querySnapshot = posts.get().await()
+            val postsList = mutableListOf<MiniPost>()
+
+            for (document in querySnapshot.documents) {
+                val post = document.toObject(Post::class.java)
+                val tempPost = MiniPost()
+
+                post?.let {
+                    var url = ""
+                    try {
+                        url = postRepository.getImage(post.image).toString()
+                    } catch (e: Exception) {
+                        Log.e(">>>", e.message.toString())
+                    }
+
+                    if (isURLValid(url)) {
+                        tempPost.image = url
+                        tempPost.title = post.title
+                        tempPost.fashionPoints = "  ${post.fashionPoints} FP"
+                        postsList.add(tempPost)
+                    }
+                }
+            }
+
+            withContext(Dispatchers.Main) {
+                _myposts.value = postsList
+            }
+        }
+    }
+
+    private fun isURLValid(url: String): Boolean {
+        return url.isNotEmpty() && URLUtil.isNetworkUrl(url)
+    }
+
 }

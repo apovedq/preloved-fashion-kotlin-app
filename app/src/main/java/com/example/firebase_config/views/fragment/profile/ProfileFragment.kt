@@ -1,5 +1,6 @@
 package com.example.firebase_config.views.fragment.profile
 
+import PostAdapterFeed
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.firebase_config.databinding.ProfileFragmentBinding
 import com.example.firebase_config.viewmodels.ProfileViewModel
@@ -57,8 +59,8 @@ class ProfileFragment : Fragment() {
                 binding.usernameTxt.text = it.username
                 binding.tradeNumTxt.text = it.exchanges.toString()
                 binding.desTxt.text = it.description
+                binding.ratingTxt.text = it.rating.toString()
             }
-
         }
 
         //Open Gallery when clicking on image
@@ -72,6 +74,20 @@ class ProfileFragment : Fragment() {
         binding.editDesBtn.setOnClickListener {
             val homeActivity = activity as HomeActivity
             homeActivity.loadFragment(homeActivity.setDescriptionFragment)
+        }
+
+        // Initialize RecyclerView and set layout manager
+        binding.postsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        //Show the posts
+        currentUser?.let {
+            vm.getPosts(it.uid)
+
+            vm.myposts.observe(viewLifecycleOwner){posts ->
+                val adapter = PostAdapterFeed(posts)
+                binding.postsRecyclerView.adapter = adapter
+                adapter.notifyDataSetChanged()
+            }
         }
 
         return binding.root
