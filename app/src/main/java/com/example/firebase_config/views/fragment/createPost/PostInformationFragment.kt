@@ -158,7 +158,7 @@ class PostInformationFragment: Fragment() {
                     binding.brandTxt.editableText.toString(),
                     binding.sizeSpinner.selectedItem.toString(),
                     binding.descriptionTxt.editableText.toString(),
-                    vm.currentUriToStore.value
+                    vm.currentUriToStore.value.toString()
                 )
 
                 val createPostActivity = activity as CreatePostActivity

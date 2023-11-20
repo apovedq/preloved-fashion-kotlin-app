@@ -32,7 +32,7 @@ class PostViewModel : ViewModel() {
         brand: String,
         size: String,
         description: String,
-        image: Uri?
+        image: String
     ) {
         newPost.postId = UUID.randomUUID().toString()
         newPost.category = category
@@ -41,7 +41,7 @@ class PostViewModel : ViewModel() {
         newPost.brand = brand
         newPost.size = size
         newPost.description = description
-        newPost.image = image.toString()
+        newPost.image = image
         newPost.userId = Firebase.auth.currentUser?.uid.toString()
     }
 

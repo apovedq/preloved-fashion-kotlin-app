@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.firebase_config.R
 import com.example.firebase_config.databinding.ActivityHomeBinding
+import com.example.firebase_config.databinding.MiniProductBinding
 import com.example.firebase_config.views.fragment.authentication.AuthFragment
 import com.example.firebase_config.views.fragment.feed.FeedFragment
+import com.example.firebase_config.views.fragment.postDetails.PostDetailsFragment
 import com.example.firebase_config.views.fragment.profile.DescriptionFragment
 import com.example.firebase_config.views.fragment.profile.ProfileFragment
 
@@ -20,12 +22,21 @@ class HomeActivity : AppCompatActivity() {
         ProfileFragment.newInstance()
     }
 
+
     val setDescriptionFragment by lazy {
         DescriptionFragment.newInstance()
     }
 
     private val binding:ActivityHomeBinding by lazy {
         ActivityHomeBinding.inflate(layoutInflater)
+    }
+
+    private val miniProductBinding: MiniProductBinding by lazy{
+        MiniProductBinding.inflate(layoutInflater)
+    }
+
+    val feedFragmentInstance: FeedFragment by lazy{
+        FeedFragment.newInstance()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,10 +76,17 @@ class HomeActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    private fun showFragment(fragment: Fragment){
+    fun showFragment(fragment: Fragment){
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragmentContainerFeed, fragment)
+            .commit()
+    }
+
+    fun showProductDeatil(id:String) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentContainerFeed, PostDetailsFragment.newInstance(id))
             .commit()
     }
 
@@ -78,4 +96,6 @@ class HomeActivity : AppCompatActivity() {
             .addToBackStack(null) // Add to back stack if needed
             .commit()
     }
+
+
 }
