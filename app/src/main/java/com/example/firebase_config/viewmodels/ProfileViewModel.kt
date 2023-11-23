@@ -154,4 +154,9 @@ class ProfileViewModel: ViewModel() {
         return url.isNotEmpty() && URLUtil.isNetworkUrl(url)
     }
 
+
+    fun signOut() {
+        Firebase.auth.signOut()
+    }
+
 }
