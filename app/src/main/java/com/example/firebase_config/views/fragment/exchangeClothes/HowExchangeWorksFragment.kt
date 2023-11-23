@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.firebase_config.databinding.HowExchangeWorksFragmentBinding
-import com.example.firebase_config.databinding.SuccessfulExchangeFragmentBinding
 
 class HowExchangeWorksFragment: Fragment() {
 
@@ -20,7 +19,7 @@ class HowExchangeWorksFragment: Fragment() {
 
         binding = HowExchangeWorksFragmentBinding.inflate(inflater, container, false)
 
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return binding.root
     }
 
     companion object{
