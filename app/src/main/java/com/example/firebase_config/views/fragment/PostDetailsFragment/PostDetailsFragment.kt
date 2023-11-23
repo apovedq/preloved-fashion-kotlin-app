@@ -1,4 +1,4 @@
-package com.example.firebase_config.views.fragment.postDetails
+package com.example.firebase_config.views.fragment.PostDetailsFragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -66,10 +66,8 @@ class PostDetailsFragment: Fragment() {
                     binding.stateTV.text = "${currentState}/10"
 
                     binding.exchangeBtn.setOnClickListener {
-                        /*val intent = Intent(this, ExchangeClothesActivity::class.java)
-                        startActivity(int)
                         exchangeVM.sendPostToExchangeInfo(current)
-                        exchangeClothesActivity.loadFragment(exchangeClothesActivity.selectClothesToExchangeFragment)*/
+                        startActivity(Intent(requireActivity(), ExchangeClothesActivity::class.java))
                     }
                 }
 
@@ -86,7 +84,7 @@ class PostDetailsFragment: Fragment() {
         return binding.root
     }
     companion object {
-        fun newInstance(idProduct:String): PostDetailsFragment{
+        fun newInstance(idProduct:String): PostDetailsFragment {
             return PostDetailsFragment().apply {
                 arguments = Bundle().apply {
                     putString("ID", idProduct)
