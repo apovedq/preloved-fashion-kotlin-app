@@ -39,7 +39,7 @@ class HomeActivity : AppCompatActivity() {
         FeedFragment.newInstance()
     }
 
-    val searchFragment by lazy{
+    val searchFragment: SearchFragment by lazy{
         SearchFragment.newInstance()
     }
 
