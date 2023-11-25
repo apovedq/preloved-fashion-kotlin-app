@@ -96,7 +96,7 @@
         app:srcCompat="@drawable/valid_exchange" />
 
     <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/exchangeInfoBtn"
         android:layout_width="331dp"
         android:layout_height="31dp"
         android:layout_marginStart="32dp"
@@ -113,7 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Intercambiar"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton5"
+        app:layout_constraintBottom_toTopOf="@+id/exchangeInfoBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView15" />
