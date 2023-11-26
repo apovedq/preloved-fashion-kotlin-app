@@ -37,7 +37,7 @@
         app:srcCompat="@drawable/how_exchange_works_grey" />
 
     <ImageButton
-        android:id="@+id/imageButton8"
+        android:id="@+id/backBtn"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:background="@null"

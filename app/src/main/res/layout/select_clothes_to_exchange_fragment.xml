@@ -52,7 +52,7 @@
     </androidx.cardview.widget.CardView>
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/backFeedBtn"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:background="@null"
@@ -68,7 +68,7 @@
         android:text="Escoge la(s) prenda(s) para intercambiar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+        app:layout_constraintTop_toBottomOf="@+id/backFeedBtn" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/exchangeRecyclerView"

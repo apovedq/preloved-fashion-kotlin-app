@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.firebase_config.databinding.NoClothesToExchangeFragmentBinding
+import com.example.firebase_config.views.ExchangeClothesActivity
+import com.example.firebase_config.views.HomeActivity
 
 class NoClothesToExchangeFragment: Fragment() {
 
@@ -18,6 +20,11 @@ class NoClothesToExchangeFragment: Fragment() {
     ): View? {
 
         binding = NoClothesToExchangeFragmentBinding.inflate(inflater, container,false)
+
+        binding.backBtn.setOnClickListener {
+            val homeActivity = activity as HomeActivity
+            homeActivity.loadFragment(homeActivity.feedFragmentInstance)
+        }
 
         return binding.root
     }

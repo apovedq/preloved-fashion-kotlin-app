@@ -17,7 +17,7 @@ class ExchangeClothesActivity : AppCompatActivity() {
         ActivityExchangeClothesBinding.inflate(layoutInflater)
     }
 
-    private val selectClothesToExchangeFragment by lazy {
+    val selectClothesToExchangeFragment by lazy {
         SelectClothesToExchangeFragment.newInstance()
     }
 

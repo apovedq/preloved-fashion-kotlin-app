@@ -11,7 +11,7 @@
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardId"
+            android:id="@+id/cardIV"
             android:layout_width="140dp"
             android:layout_height="157dp"
             app:cardCornerRadius="10dp"

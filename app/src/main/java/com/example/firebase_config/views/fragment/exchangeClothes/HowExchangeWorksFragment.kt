@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.firebase_config.databinding.HowExchangeWorksFragmentBinding
+import com.example.firebase_config.views.ExchangeClothesActivity
+import com.example.firebase_config.views.HomeActivity
 
 class HowExchangeWorksFragment: Fragment() {
 
@@ -18,6 +20,11 @@ class HowExchangeWorksFragment: Fragment() {
     ): View? {
 
         binding = HowExchangeWorksFragmentBinding.inflate(inflater, container, false)
+
+        binding.closeBtn.setOnClickListener {
+            val exchangeClothesActivity = activity as ExchangeClothesActivity
+            exchangeClothesActivity.loadFragment(exchangeClothesActivity.selectClothesToExchangeFragment)
+        }
 
         return binding.root
     }

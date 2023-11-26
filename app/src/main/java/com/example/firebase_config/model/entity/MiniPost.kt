@@ -4,5 +4,6 @@ data class MiniPost (
     var image: String = "",
     var title: String = "",
     var fashionPoints: String = "",
-    var postId: String = ""
+    var postId: String = "",
+    var isSelected: Boolean = false
 )
