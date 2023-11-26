@@ -27,6 +27,10 @@ class FeedViewModel: ViewModel() {
     //Stores the img url
     val imageUrl = MutableLiveData<Uri?>()
 
+    //Stores all posts
+    private var allPosts: List<MiniPost> = emptyList()
+
+
     fun downloadPosts(){
         viewModelScope.launch(Dispatchers.IO) {
             val posts = postRepository.getPosts()
@@ -51,17 +55,28 @@ class FeedViewModel: ViewModel() {
                         tempPost.title = post.title
                         tempPost.fashionPoints = "  ${post.fashionPoints} FP"
                         tempPost.postId = post.postId
+                        tempPost.category = post.category
                         postsList.add(tempPost)
                     }
                 }
             }
-
+            allPosts = postsList // Almacena todos los posts
             withContext(Dispatchers.Main){
                 _feed.value = postsList
             }
         }
     }
-
+    // Agrega el método de filtrado
+    fun filterPostsByCategory(category: String) {
+        viewModelScope.launch(Dispatchers.Main) {
+            val filteredList = if (category == "Todas") {
+                allPosts
+            } else {
+                allPosts.filter { it.category.equals(category, ignoreCase = true) }
+            }
+            _feed.value = filteredList
+        }
+    }
     fun findPostById(postId: String) {
         viewModelScope.launch(Dispatchers.IO) {
             val posts = postRepository.getPostsById(postId)
