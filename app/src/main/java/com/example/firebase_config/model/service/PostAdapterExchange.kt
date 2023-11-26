@@ -15,7 +15,7 @@ import com.example.firebase_config.model.entity.MiniPost
 
 class PostAdapterExchange(private val posts: List<MiniPost>) : RecyclerView.Adapter<PostAdapterExchange.PostViewHolder>() {
 
-    private var selectedPosts = mutableListOf<MiniPost>()
+    var selectedPosts = mutableListOf<MiniPost>()
     class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.miniPostImage)
         val pointsTextView: TextView = itemView.findViewById(R.id.miniPostPoints)
@@ -53,5 +53,9 @@ class PostAdapterExchange(private val posts: List<MiniPost>) : RecyclerView.Adap
 
     override fun getItemCount(): Int {
         return posts.size
+    }
+
+    fun getSumOfFP(): Int {
+        return selectedPosts.sumOf { it.fashionPoints.toInt() }
     }
 }

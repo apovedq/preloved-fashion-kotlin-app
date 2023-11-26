@@ -67,7 +67,8 @@ class PostDetailsFragment: Fragment() {
 
                     binding.exchangeBtn.setOnClickListener {
                         exchangeVM.sendPostToExchangeInfo(current)
-                        startActivity(Intent(requireActivity(), ExchangeClothesActivity::class.java))
+                        val intent = Intent(requireActivity(), ExchangeClothesActivity::class.java)
+                        startActivity(intent)
                     }
                 }
 

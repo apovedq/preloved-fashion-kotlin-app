@@ -17,6 +17,7 @@ class SelectClothesToExchangeFragment: Fragment() {
 
     private val viewModel: ExchangeViewModel by activityViewModels()
     private lateinit var binding: SelectClothesToExchangeFragmentBinding
+    private lateinit var adapter: PostAdapterExchange
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
@@ -30,13 +31,14 @@ class SelectClothesToExchangeFragment: Fragment() {
         viewModel.downloadPosts()
 
         viewModel.userPosts.observe(viewLifecycleOwner){posts ->
-            if(posts.isEmpty()){
-                val exchangeClothesActivity = activity as ExchangeClothesActivity
-                exchangeClothesActivity.loadFragment(exchangeClothesActivity.noClothesToExchangeFragment)
-            }else{
-                val adapter = PostAdapterExchange(posts)
-                binding.exchangeRecyclerView.adapter = adapter
-                adapter.notifyDataSetChanged()
+            adapter = PostAdapterExchange(posts)
+            binding.exchangeRecyclerView.adapter = adapter
+            adapter.notifyDataSetChanged()
+
+            while (adapter.getSumOfFP()<viewModel.getFashionPoints()) {
+                binding.nextBtn.isEnabled = true
+                val resourceId = resources.getIdentifier("invalid_exchange", "drawable", requireContext().packageName)
+                binding.validationIV.setImageResource(resourceId)
             }
         }
 

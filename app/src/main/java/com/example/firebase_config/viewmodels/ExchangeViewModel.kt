@@ -66,11 +66,12 @@ class ExchangeViewModel: ViewModel() {
         return url.isNotEmpty() && URLUtil.isNetworkUrl(url)
     }
 
-    fun sendPostToExchangeInfo(newPostToExchange: Post) {
-        postToExchange = newPostToExchange
+    fun sendPostToExchangeInfo(current: Post) {
+        postToExchange = current
     }
 
     fun getFashionPoints(): Int {
         return postToExchange.fashionPoints
     }
+
 }
