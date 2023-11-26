@@ -30,28 +30,32 @@ class FeedViewModel: ViewModel() {
     fun downloadPosts(){
         viewModelScope.launch(Dispatchers.IO) {
             val posts = postRepository.getPosts()
+            val currentUser = postRepository.getCurrentUserId();
 
             val querySnapshot = posts.get().await()
             val postsList = mutableListOf<MiniPost>()
 
             for (document in querySnapshot.documents){
                 val post = document.toObject(Post::class.java)
-                val tempPost = MiniPost()
 
                 post?.let {
-                    var url = ""
-                    try {
-                        url = postRepository.getImage(post.image).toString()
-                    }catch (e: Exception){
-                        Log.e(">>>", e.message.toString())
-                    }
+                    if(post.userId != currentUser){
+                        val tempPost = MiniPost()
 
-                    if(isURLValid(url)){
-                        tempPost.image = url
-                        tempPost.title = post.title
-                        tempPost.fashionPoints = "  ${post.fashionPoints} FP"
-                        tempPost.postId = post.postId
-                        postsList.add(tempPost)
+                        var url = ""
+                        try {
+                            url = postRepository.getImage(post.image).toString()
+                        }catch (e: Exception){
+                            Log.e(">>>", e.message.toString())
+                        }
+
+                        if(isURLValid(url)){
+                            tempPost.image = url
+                            tempPost.title = post.title
+                            tempPost.fashionPoints = "  ${post.fashionPoints} FP"
+                            tempPost.postId = post.postId
+                            postsList.add(tempPost)
+                        }
                     }
                 }
             }
