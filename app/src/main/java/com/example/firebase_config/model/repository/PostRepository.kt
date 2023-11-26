@@ -33,7 +33,7 @@ class PostRepository {
     }
 
     suspend fun userHasPosts(): Boolean {
-        return getPostsByUserId(Firebase.auth.currentUser?.uid.toString()).get().await().isEmpty
+        return !getPostsByUserId(Firebase.auth.currentUser?.uid.toString()).get().await().isEmpty
     }
 
     fun getPostsByUserId(userId: String): Query {

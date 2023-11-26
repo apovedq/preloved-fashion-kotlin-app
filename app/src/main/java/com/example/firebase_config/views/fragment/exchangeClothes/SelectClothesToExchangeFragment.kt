@@ -35,6 +35,7 @@ class SelectClothesToExchangeFragment: Fragment() {
             binding.exchangeRecyclerView.adapter = adapter
             adapter.notifyDataSetChanged()
 
+            //Colocar dentro del observe de abajo
             while (adapter.getSumOfFP()<viewModel.getFashionPoints()) {
                 binding.nextBtn.isEnabled = true
                 val resourceId = resources.getIdentifier("invalid_exchange", "drawable", requireContext().packageName)
@@ -42,6 +43,9 @@ class SelectClothesToExchangeFragment: Fragment() {
             }
         }
 
+        //Clic en boton de continuar que lleve a successful exchange
+
+        //Observe para que se actualice
         binding.fpRequiredTV.text = viewModel.getFashionPoints().toString()
 
         binding.exchangeInfoBtn.setOnClickListener{

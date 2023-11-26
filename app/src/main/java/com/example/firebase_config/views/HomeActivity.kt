@@ -96,5 +96,4 @@ class HomeActivity : AppCompatActivity() {
             .commit()
     }
 
-
 }
