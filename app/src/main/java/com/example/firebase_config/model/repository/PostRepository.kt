@@ -3,15 +3,21 @@ package com.example.firebase_config.model.repository
 import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.firebase_config.model.dto.Post
 import com.example.firebase_config.model.entity.MiniPost
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.util.UUID
@@ -26,6 +32,14 @@ class PostRepository {
         return Firebase.firestore.collection(GET_ALL_POST)
     }
 
+    suspend fun userHasPosts(): Boolean {
+        return !getPostsByUserId(getCurrentUserId()).get().await().isEmpty
+    }
+
+    fun getCurrentUserId(): String{
+        return Firebase.auth.currentUser?.uid.toString();
+    }
+
     fun getPostsByUserId(userId: String): Query {
         return Firebase.firestore.collection(GET_ALL_POST)
             .whereEqualTo("userId", userId)
@@ -36,7 +50,6 @@ class PostRepository {
     }
 
     suspend fun getImage(imageId: String): Uri? {
-        Log.e(">>>", imageId)
         return Firebase.storage.reference
             .child(GET_POST_IMAGE)
             .child(imageId)

@@ -8,9 +8,8 @@ import androidx.fragment.app.Fragment
 import com.example.firebase_config.R
 import com.example.firebase_config.databinding.ActivityHomeBinding
 import com.example.firebase_config.databinding.MiniProductBinding
-import com.example.firebase_config.views.fragment.authentication.AuthFragment
 import com.example.firebase_config.views.fragment.feed.FeedFragment
-import com.example.firebase_config.views.fragment.postDetails.PostDetailsFragment
+import com.example.firebase_config.views.fragment.PostDetailsFragment.PostDetailsFragment
 import com.example.firebase_config.views.fragment.profile.DescriptionFragment
 import com.example.firebase_config.views.fragment.profile.ProfileFragment
 
@@ -83,7 +82,7 @@ class HomeActivity : AppCompatActivity() {
             .commit()
     }
 
-    fun showProductDeatil(id:String) {
+    fun showProductDetail(id:String) {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragmentContainerFeed, PostDetailsFragment.newInstance(id))
@@ -96,6 +95,5 @@ class HomeActivity : AppCompatActivity() {
             .addToBackStack(null) // Add to back stack if needed
             .commit()
     }
-
 
 }

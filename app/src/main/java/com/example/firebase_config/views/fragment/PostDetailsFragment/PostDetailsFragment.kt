@@ -1,26 +1,25 @@
-package com.example.firebase_config.views.fragment.postDetails
+package com.example.firebase_config.views.fragment.PostDetailsFragment
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.Glide
 import com.example.firebase_config.databinding.PostDetailFragmentBinding
 import com.example.firebase_config.model.dto.Post
+import com.example.firebase_config.viewmodels.ExchangeViewModel
 import com.example.firebase_config.viewmodels.FeedViewModel
-import com.example.firebase_config.views.CreatePostActivity
+import com.example.firebase_config.views.ExchangeClothesActivity
 import com.example.firebase_config.views.HomeActivity
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class PostDetailsFragment: Fragment() {
-
-    private val viewModel: FeedViewModel by activityViewModels()
+    private val feedVM: FeedViewModel by activityViewModels()
+    private val exchangeVM: ExchangeViewModel by activityViewModels()
     private lateinit var binding: PostDetailFragmentBinding
     private var productId:String? = null
     private var postInformation: Post? = null
@@ -32,6 +31,7 @@ class PostDetailsFragment: Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,13 +39,12 @@ class PostDetailsFragment: Fragment() {
     ): View? {
         binding = PostDetailFragmentBinding.inflate(inflater, container, false)
 
-        productId?.let{viewModel.findPostById(it)}
+        productId?.let{feedVM.findPostById(it)}
 
         //Asigns post info
-        viewModel.postInfo.observe(viewLifecycleOwner) { post ->
+        feedVM.postInfo.observe(viewLifecycleOwner) { post ->
             if (post != null) {
                 postInformation = post
-                Toast.makeText(requireContext(), postInformation.toString(), Toast.LENGTH_LONG).show()
 
                 binding.backBTN.setOnClickListener(){
                     //Back to feed fragment
@@ -53,26 +52,31 @@ class PostDetailsFragment: Fragment() {
                     backToFeedActivity.showFragment(backToFeedActivity.feedFragmentInstance)
                 }
 
+                postInformation?.let { current ->
 
+                    val sizeString = current.size.split("/")[0]
+                    val currentState = (current.fashionPoints/10).toString()
 
-                postInformation?.let {
-
-                    val sizeString = it.size.split("/")[0]
-                    val currentState = (it.fashionPoints/10).toString()
-
-                    binding.titleTV.text = it.title
-                    binding.brandTV.text= it.brand
-                    binding.fpTV.text = "${it.fashionPoints.toString()} FP"
-                    binding.descriptionTV.text = it.description
-                    binding.genderTV.text = it.gender
+                    binding.titleTV.text = current.title
+                    binding.brandTV.text= current.brand
+                    binding.fpTV.text = "${current.fashionPoints.toString()} FP"
+                    binding.descriptionTV.text = current.description
+                    binding.genderTV.text = current.gender
                     binding.sizeTV.text = sizeString
                     binding.stateTV.text = "${currentState}/10"
+
+                    binding.exchangeBtn.setOnClickListener {
+                        val intent = Intent(requireActivity(), ExchangeClothesActivity::class.java)
+                        intent.putExtra("currentPostId", current.postId)
+                        startActivity(intent)
+                    }
                 }
+
             }
         }
 
         //Assigns image to main
-        viewModel.imageUrl.observe(viewLifecycleOwner){url ->
+        feedVM.imageUrl.observe(viewLifecycleOwner){url ->
             if(url != null){
                 Glide.with(this).load(url).into(binding.mainImageIV)
             }
@@ -81,7 +85,7 @@ class PostDetailsFragment: Fragment() {
         return binding.root
     }
     companion object {
-        fun newInstance(idProduct:String): PostDetailsFragment{
+        fun newInstance(idProduct:String): PostDetailsFragment {
             return PostDetailsFragment().apply {
                 arguments = Bundle().apply {
                     putString("ID", idProduct)

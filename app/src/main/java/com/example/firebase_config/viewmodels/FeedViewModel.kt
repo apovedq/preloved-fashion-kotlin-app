@@ -27,41 +27,58 @@ class FeedViewModel: ViewModel() {
     //Stores the img url
     val imageUrl = MutableLiveData<Uri?>()
 
+    //Stores all posts
+    private var allPosts: List<MiniPost> = emptyList()
+
+
     fun downloadPosts(){
         viewModelScope.launch(Dispatchers.IO) {
             val posts = postRepository.getPosts()
+            val currentUser = postRepository.getCurrentUserId();
 
             val querySnapshot = posts.get().await()
             val postsList = mutableListOf<MiniPost>()
 
             for (document in querySnapshot.documents){
                 val post = document.toObject(Post::class.java)
-                val tempPost = MiniPost()
 
                 post?.let {
-                    var url = ""
-                    try {
-                        url = postRepository.getImage(post.image).toString()
-                    }catch (e: Exception){
-                        Log.e(">>>", e.message.toString())
-                    }
+                    if(post.userId != currentUser){
+                        val tempPost = MiniPost()
+                        var url = ""
+                        try {
+                            url = postRepository.getImage(post.image).toString()
+                        }catch (e: Exception){
+                            Log.e(">>>", e.message.toString())
+                        }
 
-                    if(isURLValid(url)){
-                        tempPost.image = url
-                        tempPost.title = post.title
-                        tempPost.fashionPoints = "  ${post.fashionPoints} FP"
-                        tempPost.postId = post.postId
-                        postsList.add(tempPost)
+                        if(isURLValid(url)){
+                            tempPost.image = url
+                            tempPost.title = post.title
+                            tempPost.fashionPoints = post.fashionPoints
+                            tempPost.postId = post.postId
+                            postsList.add(tempPost)
+                        }
                     }
                 }
             }
-
+            allPosts = postsList // Almacena todos los posts
             withContext(Dispatchers.Main){
                 _feed.value = postsList
             }
         }
     }
-
+    // Agrega el método de filtrado
+    fun filterPostsByCategory(category: String) {
+        viewModelScope.launch(Dispatchers.Main) {
+            val filteredList = if (category == "Todas") {
+                allPosts
+            } else {
+                allPosts.filter { it.category.equals(category, ignoreCase = true) }
+            }
+            _feed.value = filteredList
+        }
+    }
     fun findPostById(postId: String) {
         viewModelScope.launch(Dispatchers.IO) {
             val posts = postRepository.getPostsById(postId)
