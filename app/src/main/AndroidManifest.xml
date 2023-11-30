@@ -62,6 +62,9 @@
         <activity
             android:name=".views.CreatePostActivity"
             android:exported="false" />
+        <activity
+            android:name=".views.ExchangeClothesActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

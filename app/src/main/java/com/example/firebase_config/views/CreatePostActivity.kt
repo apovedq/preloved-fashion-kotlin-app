@@ -19,6 +19,7 @@ import com.example.firebase_config.views.fragment.createPost.PostInformationFrag
 import com.example.firebase_config.views.fragment.createPost.SecondQuestionSurveyFragment
 import com.example.firebase_config.views.fragment.createPost.ThirdQuestionSurveyFragment
 import com.example.firebase_config.views.fragment.createPost.TotalScoreSurveyFragment
+import com.example.firebase_config.views.fragment.profile.ProfileFragment
 
 class CreatePostActivity : AppCompatActivity() {
 
@@ -46,6 +47,9 @@ class CreatePostActivity : AppCompatActivity() {
     }
     val totalScoreSurveyFragment by lazy{
         TotalScoreSurveyFragment.newInstance()
+    }
+    val profileFragment by lazy {
+        ProfileFragment.newInstance()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
