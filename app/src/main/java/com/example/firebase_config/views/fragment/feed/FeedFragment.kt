@@ -32,7 +32,35 @@ class FeedFragment : Fragment() {
             binding.feedRecyclerView.adapter = adapter
             adapter.notifyDataSetChanged()
         }
+        setupCategoryButtons()
         return binding.root
+    }
+    private fun setupCategoryButtons() {
+        // Botón para la categoría "Camisas"
+        binding.buttonCamisas.setOnClickListener {
+            viewModel.filterPostsByCategory("Camisas")
+        }
+
+        // Botón para la categoría "Pantalones"
+        binding.buttonPantalones.setOnClickListener {
+            viewModel.filterPostsByCategory("Pantalones")
+        }
+
+        // Botón para la categoría "Zapatos"
+        binding.buttonZapatos.setOnClickListener {
+            viewModel.filterPostsByCategory("Zapatos")
+        }
+
+        // Botón para la categoría "Vestidos"
+        binding.buttonVestidos.setOnClickListener {
+            viewModel.filterPostsByCategory("Vestidos")
+        }
+
+        // Agrega aquí manejadores para cualquier otra categoría que tengas
+        // Por ejemplo:
+        // binding.buttonOtraCategoria.setOnClickListener {
+        //     viewModel.filterPostsByCategory("OtraCategoria")
+        // }
     }
 
     companion object{
