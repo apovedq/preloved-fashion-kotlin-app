@@ -9,6 +9,8 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.tasks.await
 
 class UserRepository {
@@ -17,11 +19,15 @@ class UserRepository {
         return Firebase.auth.createUserWithEmailAndPassword(email, pass)
     }
 
+    fun getCurrentUserIdObligatory(): String {
+        return Firebase.auth.currentUser!!.uid
+    }
+
     fun getCurrentUserId(): String? {
         return Firebase.auth.currentUser?.uid
     }
 
-    fun createUserCollection(user: String): CollectionReference {
+    fun createUserCollection(): CollectionReference {
         return Firebase.firestore.collection("users")
     }
 
@@ -37,9 +43,11 @@ class UserRepository {
         return Firebase.auth.signInWithCredential(credential)
     }
 
+    fun profileImage(): StorageReference {
+        return Firebase.storage.reference.child("profileImages")
+    }
+
     fun signOut() {
         Firebase.auth.signOut()
     }
-
-
 }
