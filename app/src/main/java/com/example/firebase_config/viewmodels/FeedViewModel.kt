@@ -106,10 +106,12 @@ class FeedViewModel: ViewModel() {
 
     fun searchPosts(input: String?) {
         viewModelScope.launch(Dispatchers.Main) {
-            val postsFound = allPosts.filter { it.title.lowercase().contains(input.orEmpty()) ||
-                    it.description.lowercase().contains(input.orEmpty())}
-            _feed.value = postsFound
+            if (input.isNullOrEmpty()) {
+                _feed.value = emptyList()
+            } else {
+                val postsFound = allPosts.filter { it.title.lowercase().contains(input) || it.description.lowercase().contains(input)}
+                _feed.value = postsFound
+            }
         }
     }
-
 }

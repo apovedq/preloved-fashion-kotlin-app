@@ -21,7 +21,7 @@ class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
 
     private val postsVM: FeedViewModel by activityViewModels()
-    private lateinit var searchInput : SearchView
+    private lateinit var search : SearchView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,19 +30,14 @@ class SearchFragment : Fragment() {
     ): View? {
         binding = FragmentSearchBinding.inflate(inflater,container,false)
 
-
-//        postsVM.downloadPosts()
-
-        searchInput = binding.searchInput
-
         postsVM.feed.observe(viewLifecycleOwner){posts ->
             val adapter = PostAdapterFeed(posts)
             binding.searchRV.adapter = adapter
             adapter.notifyDataSetChanged()
         }
 
-
-        searchInput.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        search = binding.searchInput
+        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
