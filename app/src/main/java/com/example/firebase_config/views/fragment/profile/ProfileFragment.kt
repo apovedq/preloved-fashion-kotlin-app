@@ -90,6 +90,15 @@ class ProfileFragment : Fragment() {
             }
         }
 
+
+        binding.logOutBtn.setOnClickListener {
+            vm.signOut()
+            startActivity(Intent(requireContext(), AuthActivity::class.java))
+            Toast.makeText(requireContext(), "Haz cerrado sesión", Toast.LENGTH_SHORT)
+                .show()
+        }
+
+
         return binding.root
     }
 
