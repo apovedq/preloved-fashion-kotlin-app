@@ -5,19 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.firebase_config.databinding.FeedFragmentBinding
 import com.example.firebase_config.databinding.FragmentSearchBinding
 import com.example.firebase_config.viewmodels.FeedViewModel
-import com.example.firebase_config.viewmodels.SearchViewModel
-import com.example.firebase_config.views.fragment.authentication.SignInFragment
-import com.example.firebase_config.views.fragment.profile.DescriptionFragment
-class SearchFragment : Fragment() {
-    private var originalMode : Int? = null
 
+class SearchFragment : Fragment() {
+    
     private lateinit var binding: FragmentSearchBinding
 
     private val postsVM: FeedViewModel by activityViewModels()
