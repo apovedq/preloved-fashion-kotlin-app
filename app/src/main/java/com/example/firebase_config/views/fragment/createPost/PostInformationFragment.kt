@@ -122,7 +122,7 @@ class PostInformationFragment: Fragment() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                // No action needed here, but you can add code if necessary.
+                // No action needed here
             }
         }
 
