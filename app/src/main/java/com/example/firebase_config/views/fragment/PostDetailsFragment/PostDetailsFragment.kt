@@ -1,5 +1,6 @@
 package com.example.firebase_config.views.fragment.PostDetailsFragment
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,7 +18,6 @@ import com.example.firebase_config.views.ExchangeClothesActivity
 import com.example.firebase_config.views.HomeActivity
 
 class PostDetailsFragment: Fragment() {
-
     private val feedVM: FeedViewModel by activityViewModels()
     private val exchangeVM: ExchangeViewModel by activityViewModels()
     private lateinit var binding: PostDetailFragmentBinding
@@ -31,6 +31,7 @@ class PostDetailsFragment: Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,7 +45,6 @@ class PostDetailsFragment: Fragment() {
         feedVM.postInfo.observe(viewLifecycleOwner) { post ->
             if (post != null) {
                 postInformation = post
-                Toast.makeText(requireContext(), postInformation.toString(), Toast.LENGTH_LONG).show()
 
                 binding.backBTN.setOnClickListener(){
                     //Back to feed fragment
@@ -66,8 +66,8 @@ class PostDetailsFragment: Fragment() {
                     binding.stateTV.text = "${currentState}/10"
 
                     binding.exchangeBtn.setOnClickListener {
-                        exchangeVM.sendPostToExchangeInfo(current)
                         val intent = Intent(requireActivity(), ExchangeClothesActivity::class.java)
+                        intent.putExtra("currentPostId", current.postId)
                         startActivity(intent)
                     }
                 }

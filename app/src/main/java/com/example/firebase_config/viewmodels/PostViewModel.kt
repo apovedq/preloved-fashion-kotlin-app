@@ -63,7 +63,6 @@ class PostViewModel : ViewModel() {
         } catch (ex: Exception) {
             Log.e(">>>", ex.message.toString())
         }
-
     }
 
 

@@ -52,7 +52,7 @@ class FeedViewModel: ViewModel() {
                         if(isURLValid(url)){
                             tempPost.image = url
                             tempPost.title = post.title
-                            tempPost.fashionPoints = "  ${post.fashionPoints} FP"
+                            tempPost.fashionPoints = post.fashionPoints
                             tempPost.postId = post.postId
                             postsList.add(tempPost)
                         }

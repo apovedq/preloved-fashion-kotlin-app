@@ -95,7 +95,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exchangeRecyclerView"
-        app:srcCompat="@drawable/valid_exchange" />
+        app:srcCompat="@drawable/invalid_exchange" />
 
     <ImageButton
         android:id="@+id/exchangeInfoBtn"
@@ -114,6 +114,7 @@
         android:id="@+id/nextBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:enabled="false"
         android:text="Continuar"
         app:layout_constraintBottom_toTopOf="@+id/exchangeInfoBtn"
         app:layout_constraintEnd_toEndOf="parent"

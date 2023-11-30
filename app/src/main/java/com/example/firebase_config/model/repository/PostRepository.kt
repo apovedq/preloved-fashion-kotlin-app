@@ -50,7 +50,6 @@ class PostRepository {
     }
 
     suspend fun getImage(imageId: String): Uri? {
-        Log.e(">>>", imageId)
         return Firebase.storage.reference
             .child(GET_POST_IMAGE)
             .child(imageId)

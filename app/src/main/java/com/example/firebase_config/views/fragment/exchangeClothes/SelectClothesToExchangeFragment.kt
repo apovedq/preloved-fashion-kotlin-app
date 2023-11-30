@@ -2,6 +2,7 @@ package com.example.firebase_config.views.fragment.exchangeClothes
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,8 @@ class SelectClothesToExchangeFragment: Fragment() {
     private val viewModel: ExchangeViewModel by activityViewModels()
     private lateinit var binding: SelectClothesToExchangeFragmentBinding
     private lateinit var adapter: PostAdapterExchange
+    private var id: String = ""
+    private var fashionPointsNeeded: Int = 0
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
@@ -29,24 +32,32 @@ class SelectClothesToExchangeFragment: Fragment() {
         binding = SelectClothesToExchangeFragmentBinding.inflate(inflater, container, false)
 
         viewModel.downloadPosts()
+        val invalidExchangeId = resources.getIdentifier("invalid_exchange", "drawable", requireContext().packageName)
+        val validExchangeId = resources.getIdentifier("valid_exchange", "drawable", requireContext().packageName)
 
         viewModel.userPosts.observe(viewLifecycleOwner){posts ->
-            adapter = PostAdapterExchange(posts)
+            adapter = PostAdapterExchange(viewModel)
+            adapter.addPosts(posts)
             binding.exchangeRecyclerView.adapter = adapter
-            adapter.notifyDataSetChanged()
+        }
 
-            //Colocar dentro del observe de abajo
-            while (adapter.getSumOfFP()<viewModel.getFashionPoints()) {
+        viewModel.fashionPoints.observe(viewLifecycleOwner){
+            val fashionPointsToExchange = it
+
+            binding.nextBtn.isEnabled = false
+            binding.validationIV.setImageResource(invalidExchangeId)
+
+            if(hasEnoughtFashionPoints(fashionPointsNeeded, fashionPointsToExchange)){
                 binding.nextBtn.isEnabled = true
-                val resourceId = resources.getIdentifier("invalid_exchange", "drawable", requireContext().packageName)
-                binding.validationIV.setImageResource(resourceId)
+                binding.validationIV.setImageResource(validExchangeId)
             }
         }
 
-        //Clic en boton de continuar que lleve a successful exchange
-
-        //Observe para que se actualice
-        binding.fpRequiredTV.text = viewModel.getFashionPoints().toString()
+        viewModel.getPostById(id)
+        viewModel.postToExchange.observe(viewLifecycleOwner){
+            fashionPointsNeeded = it.fashionPoints
+            binding.fpRequiredTV.text = it.fashionPoints.toString()
+        }
 
         binding.exchangeInfoBtn.setOnClickListener{
             val exchangeClothesActivity = activity as ExchangeClothesActivity
@@ -59,6 +70,14 @@ class SelectClothesToExchangeFragment: Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun hasEnoughtFashionPoints(fashionPointsNeeded: Int, fashionPointsToExchange: Int): Boolean {
+        return (fashionPointsNeeded - 20) <= fashionPointsToExchange && (fashionPointsNeeded + 20) >= fashionPointsToExchange
+    }
+
+    fun setCurrentPostToExchangeId(id: String){
+        this.id = id
     }
 
     companion object{

@@ -82,7 +82,7 @@ class HomeActivity : AppCompatActivity() {
             .commit()
     }
 
-    fun showProductDeatil(id:String) {
+    fun showProductDetail(id:String) {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragmentContainerFeed, PostDetailsFragment.newInstance(id))

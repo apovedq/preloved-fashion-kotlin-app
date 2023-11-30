@@ -1,17 +1,17 @@
 package com.example.firebase_config.views
 
 import android.os.Bundle
+import android.util.Log
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import com.example.firebase_config.R
 import com.example.firebase_config.databinding.ActivityExchangeClothesBinding
 import com.example.firebase_config.model.repository.PostRepository
-import com.example.firebase_config.viewmodels.ExchangeViewModel
 import com.example.firebase_config.views.fragment.exchangeClothes.HowExchangeWorksFragment
 import com.example.firebase_config.views.fragment.exchangeClothes.NoClothesToExchangeFragment
 import com.example.firebase_config.views.fragment.exchangeClothes.SelectClothesToExchangeFragment
-import com.example.firebase_config.views.fragment.exchangeClothes.SelectedMiniProduct
 import com.example.firebase_config.views.fragment.exchangeClothes.SuccessfulExchangeFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -52,6 +52,10 @@ class ExchangeClothesActivity : AppCompatActivity() {
             withContext(Dispatchers.Main) {
                 if (hasPosts) {
                     loadFragment(selectClothesToExchangeFragment)
+                    val currentPostId = intent.extras?.getString("currentPostId")
+                    currentPostId?.let {
+                        selectClothesToExchangeFragment.setCurrentPostToExchangeId(currentPostId)
+                    }
                 } else {
                     loadFragment(noClothesToExchangeFragment)
                 }
