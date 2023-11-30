@@ -5,5 +5,6 @@ data class MiniPost (
     var title: String = "",
     var fashionPoints: String = "",
     var postId: String = "",
-    var category: String = ""
+    var category: String = "",
+    var description: String = ""
 )
