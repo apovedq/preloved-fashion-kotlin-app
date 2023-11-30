@@ -1,13 +1,16 @@
 package com.example.firebase_config.views.fragment.exchangeClothes
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
+import com.example.firebase_config.R
 import com.example.firebase_config.databinding.SelectClothesToExchangeFragmentBinding
 import com.example.firebase_config.model.service.PostAdapterExchange
 import com.example.firebase_config.viewmodels.ExchangeViewModel
@@ -65,8 +68,16 @@ class SelectClothesToExchangeFragment: Fragment() {
         }
 
         binding.backFeedBtn.setOnClickListener {
-            val homeActivity = activity as HomeActivity
-            homeActivity.loadFragment(homeActivity.feedFragmentInstance)
+            val intent = Intent(requireContext(), HomeActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
+        }
+
+        binding.nextBtn.setOnClickListener {
+            val successfulExchangeFragment = SuccessfulExchangeFragment()
+            val transaction: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragmentContainer, successfulExchangeFragment)
+            transaction.commit()
         }
 
         return binding.root
