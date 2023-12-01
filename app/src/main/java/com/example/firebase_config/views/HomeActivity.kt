@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.firebase_config.R
 import com.example.firebase_config.databinding.ActivityHomeBinding
 import com.example.firebase_config.databinding.MiniProductBinding
+import com.example.firebase_config.views.fragment.Notifications.NotificationsFragment
 import com.example.firebase_config.views.fragment.feed.FeedFragment
 import com.example.firebase_config.views.fragment.PostDetailsFragment.PostDetailsFragment
 import com.example.firebase_config.views.fragment.profile.DescriptionFragment
@@ -48,36 +49,31 @@ class HomeActivity : AppCompatActivity() {
         showFragment(feedFragment)
 
         //Switch to other screens
-        binding.bottomNavigation.setOnItemSelectedListener {
-            //Switch to home
-            when(it.itemId){
-                R.id.navigation_home->{
+        binding.bottomNavigation.setOnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.navigation_home -> {
                     showFragment(feedFragment)
+                    true
                 }
-            }
-
-            //Switch to profile
-            when(it.itemId){
-                R.id.navigation_profile->{
+                R.id.navigation_profile -> {
                     showFragment(profileFragment)
+                    true
                 }
-            }
-
-            //Switch to create post activity
-            when(it.itemId){
-                R.id.navigation_create_post->{
+                R.id.navigation_create_post -> {
                     startActivity(Intent(this, CreatePostActivity::class.java))
+                    true
                 }
-            }
-
-            //Switch to search item activity
-            when(it.itemId){
-                R.id.navigation_search->{
+                R.id.navigation_search -> {
                     showFragment(searchFragment)
+                    true
                 }
+                R.id.navigation_notification -> { // Asegúrate de que este ID coincida con el ítem de notificaciones en tu menu.xml
+                    val notificationsFragment = NotificationsFragment()
+                    showFragment(notificationsFragment)
+                    true
+                }
+                else -> false
             }
-
-            true
         }
     }
 

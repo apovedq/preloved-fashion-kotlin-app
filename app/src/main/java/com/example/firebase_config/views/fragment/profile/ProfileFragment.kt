@@ -48,7 +48,7 @@ class ProfileFragment : Fragment() {
 
         //Show information
         vm.showUser()
-
+        getPosts()
         //Using info from vm, show and change on profile page
         vm.userLD.observe(viewLifecycleOwner){
             //Image
@@ -83,11 +83,7 @@ class ProfileFragment : Fragment() {
         //Show the posts
 
         binding.myProdBtn.setOnClickListener {
-            vm.myposts.observe(viewLifecycleOwner){posts ->
-                val adapter = PostAdapterFeed(vm, posts)
-                binding.postsRecyclerView.adapter = adapter
-                adapter.notifyDataSetChanged()
-            }
+            getPosts()
         }
 
         binding.myFavBtn.setOnClickListener {
@@ -111,6 +107,18 @@ class ProfileFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    fun getPosts(){
+        currentUser?.let {
+            vm.getPosts(it.uid)
+
+            vm.myposts.observe(viewLifecycleOwner) { posts ->
+                val adapter = PostAdapterFeed(vm, posts)
+                binding.postsRecyclerView.adapter = adapter
+                adapter.notifyDataSetChanged()
+            }
+        }
     }
 
     companion object {
