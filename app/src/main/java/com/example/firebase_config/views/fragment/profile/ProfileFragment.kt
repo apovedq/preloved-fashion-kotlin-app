@@ -84,7 +84,7 @@ class ProfileFragment : Fragment() {
             vm.getPosts(it.uid)
 
             vm.myposts.observe(viewLifecycleOwner){posts ->
-                val adapter = PostAdapterFeed(posts)
+                val adapter = PostAdapterFeed(vm, posts)
                 binding.postsRecyclerView.adapter = adapter
                 adapter.notifyDataSetChanged()
             }
