@@ -10,13 +10,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.firebase_config.model.dto.Post
 import com.example.firebase_config.model.entity.MiniPost
 import com.example.firebase_config.model.repository.PostRepository
-import com.example.firebase_config.model.service.OnFavoritePostSelectedListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-class FeedViewModel: ViewModel(), OnFavoritePostSelectedListener {
+class FeedViewModel: ViewModel() {
     private val postRepository = PostRepository()
     private val _feed = MutableLiveData<List<MiniPost>>()
     val feed: LiveData<List<MiniPost>> get() = _feed
@@ -120,6 +119,17 @@ class FeedViewModel: ViewModel(), OnFavoritePostSelectedListener {
             withContext(Dispatchers.Main){
                 postRepository.getPostsById(post.postId).toObject(Post::class.java)
                     ?.let { postRepository.removeFavoritePost(it) }
+            }
+        }
+    }
+    
+    fun searchPosts(input: String?) {
+        viewModelScope.launch(Dispatchers.Main) {
+            if (input.isNullOrEmpty()) {
+                _feed.value = emptyList()
+            } else {
+                val postsFound = allPosts.filter { it.title.lowercase().contains(input) || it.description.lowercase().contains(input)}
+                _feed.value = postsFound
             }
         }
     }

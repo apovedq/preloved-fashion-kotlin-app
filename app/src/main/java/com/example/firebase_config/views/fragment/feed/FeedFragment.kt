@@ -28,7 +28,7 @@ class FeedFragment : Fragment() {
         viewModel.downloadPosts()
 
         viewModel.feed.observe(viewLifecycleOwner){posts ->
-            val adapter = PostAdapterFeed(viewModel, posts)
+            val adapter = PostAdapterFeed(posts)
             binding.feedRecyclerView.adapter = adapter
             adapter.notifyDataSetChanged()
         }

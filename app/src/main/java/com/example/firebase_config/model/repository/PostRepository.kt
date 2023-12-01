@@ -6,10 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.firebase_config.model.dto.Post
 import com.example.firebase_config.model.entity.MiniPost
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
@@ -66,5 +66,8 @@ class PostRepository {
         Firebase.firestore.collection("users").document(getCurrentUserId())
             .update("favorite", FieldValue.arrayRemove(post.postId))
     }
-
+    
+    suspend fun getFavPosts(userId: String): QuerySnapshot? {
+        return Firebase.firestore.collection("users").document(getCurrentUserId()).collection("favorite").get().await()
+    }
 }

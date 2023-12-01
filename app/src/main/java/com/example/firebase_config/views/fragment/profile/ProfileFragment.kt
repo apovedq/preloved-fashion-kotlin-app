@@ -80,14 +80,32 @@ class ProfileFragment : Fragment() {
         binding.postsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         //Show the posts
-        currentUser?.let {
-            vm.getPosts(it.uid)
 
+        binding.myProdBtn.setOnClickListener {
             vm.myposts.observe(viewLifecycleOwner){posts ->
-                val adapter = PostAdapterFeed(vm, posts)
+                val adapter = PostAdapterFeed(posts)
                 binding.postsRecyclerView.adapter = adapter
                 adapter.notifyDataSetChanged()
             }
+        }
+
+        binding.myFavBtn.setOnClickListener {
+            currentUser?.let {
+                vm.getFavPosts(it.uid)
+
+                vm.myposts.observe(viewLifecycleOwner){posts ->
+                    val adapter = PostAdapterFeed(posts)
+                    binding.postsRecyclerView.adapter = adapter
+                    adapter.notifyDataSetChanged()
+                }
+            }
+        }
+
+        binding.logOutBtn.setOnClickListener {
+            vm.signOut()
+            startActivity(Intent(requireContext(), AuthActivity::class.java))
+            Toast.makeText(requireContext(), "Haz cerrado sesión", Toast.LENGTH_SHORT)
+                .show()
         }
 
         return binding.root
