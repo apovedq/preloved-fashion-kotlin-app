@@ -12,7 +12,7 @@ import com.example.firebase_config.databinding.FragmentSearchBinding
 import com.example.firebase_config.viewmodels.FeedViewModel
 
 class SearchFragment : Fragment() {
-    
+
     private lateinit var binding: FragmentSearchBinding
 
     private val postsVM: FeedViewModel by activityViewModels()
