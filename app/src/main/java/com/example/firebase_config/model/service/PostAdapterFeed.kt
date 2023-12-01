@@ -31,13 +31,12 @@ class PostAdapterFeed(private val posts: List<MiniPost>) : RecyclerView.Adapter<
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val post = posts[position]
         holder.titleTextView.text = post.title
-        holder.pointsTextView.text = post.fashionPoints
+        holder.pointsTextView.text = "  ${post.fashionPoints} FP"
 
         Glide.with(holder.imageView.context).load(post.image).into(holder.imageView)
         holder.imageView.setOnClickListener {
-            Log.e(" Clicking >>", "successs")
             val homeActivity = holder.imageView.context as HomeActivity
-            homeActivity.showProductDeatil(post.postId!!)
+            homeActivity.showProductDetail(post.postId)
         }
     }
 
