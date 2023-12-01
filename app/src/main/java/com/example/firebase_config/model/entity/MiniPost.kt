@@ -6,5 +6,6 @@ data class MiniPost (
     var fashionPoints: Int = 0,
     var postId: String = "",
     var isSelected: Boolean = false,
-    var category: String = ""
+    var category: String = "",
+    var description: String = ""
 )

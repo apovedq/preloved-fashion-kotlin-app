@@ -21,7 +21,7 @@ class FeedViewModel: ViewModel() {
     val feed: LiveData<List<MiniPost>> get() = _feed
     val postDetailId: String? = null
 
-    //Stores the post data in my varibale
+    //Stores the post data in my variable
     val postInfo = MutableLiveData<Post?>()
 
     //Stores the img url
@@ -57,6 +57,8 @@ class FeedViewModel: ViewModel() {
                             tempPost.title = post.title
                             tempPost.fashionPoints = post.fashionPoints
                             tempPost.postId = post.postId
+                            tempPost.category = post.category
+                            tempPost.description = post.description
                             postsList.add(tempPost)
                         }
                     }
@@ -103,5 +105,16 @@ class FeedViewModel: ViewModel() {
 
     private fun isURLValid(url: String): Boolean {
         return url.isNotEmpty() && URLUtil.isNetworkUrl(url)
+    }
+
+    fun searchPosts(input: String?) {
+        viewModelScope.launch(Dispatchers.Main) {
+            if (input.isNullOrEmpty()) {
+                _feed.value = emptyList()
+            } else {
+                val postsFound = allPosts.filter { it.title.lowercase().contains(input) || it.description.lowercase().contains(input)}
+                _feed.value = postsFound
+            }
+        }
     }
 }
