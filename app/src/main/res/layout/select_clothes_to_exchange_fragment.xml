@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
@@ -29,10 +28,8 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="0dp"
                 android:layout_marginBottom="5dp"
-                android:fontFamily="@font/regular"
                 android:text="La prenda que elegiste tiene "
-                android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/fpRequiredTV"
@@ -42,10 +39,8 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="0dp"
                 android:layout_weight="1"
-                android:fontFamily="@font/regular"
                 android:text="100FP"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textColor="@color/white" />
 
             <ImageView
                 android:id="@+id/imageView14"
@@ -72,10 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:fontFamily="@font/medium"
         android:text="Escoge la(s) prenda(s) para intercambiar"
-        android:textColor="@color/font"
-        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/backFeedBtn" />
@@ -123,7 +115,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:enabled="false"
-        android:fontFamily="@font/bold"
         android:text="Continuar"
         app:layout_constraintBottom_toTopOf="@+id/exchangeInfoBtn"
         app:layout_constraintEnd_toEndOf="parent"

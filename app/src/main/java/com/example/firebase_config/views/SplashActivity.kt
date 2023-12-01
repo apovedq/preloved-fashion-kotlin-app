@@ -18,6 +18,7 @@ class SplashActivity : AppCompatActivity() {
         lifecycleScope.launch {
             delay(3000)
             val user = Firebase.auth.currentUser
+            val text = "No hay usuario"
             if (user == null) {
                 startActivity(Intent(this@SplashActivity, AuthActivity::class.java))
                 finish()

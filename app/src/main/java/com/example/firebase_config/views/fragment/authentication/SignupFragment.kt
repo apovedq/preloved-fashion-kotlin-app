@@ -65,10 +65,13 @@ class SignupFragment : Fragment() {
                     override fun onSuccess(loginResult: LoginResult) {
                         Log.d(TAG, "facebook:onSuccess:$loginResult")
                         vm.signUpWithFacebbook(loginResult.accessToken, loginResult)
+
                     }
+
                     override fun onCancel() {
                         Log.d(TAG, "facebook:onCancel")
                     }
+
                     override fun onError(error: FacebookException) {
                         Log.d(TAG, "facebook:onError", error)
                     }

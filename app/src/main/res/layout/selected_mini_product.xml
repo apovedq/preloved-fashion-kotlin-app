@@ -56,11 +56,9 @@
         <TextView
             android:id="@+id/miniPostPoints"
             android:layout_width="67dp"
-            android:layout_height="wrap_content"
+            android:layout_height="21dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/fashion_points_background"
-            android:fontFamily="@font/bold"
-            android:padding="2dp"
             android:text="  0 FP"
             android:textColor="#EFEFEF"
             android:textSize="15sp" />

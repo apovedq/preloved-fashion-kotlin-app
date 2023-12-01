@@ -8,7 +8,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
@@ -16,10 +15,8 @@
             android:id="@+id/textView58"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="52dp"
-            android:fontFamily="@font/semi_bold"
+            android:layout_marginStart="58dp"
             android:text="1"
-            android:textColor="@color/font"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/seekBar5Q" />
 
@@ -28,9 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="65dp"
-            android:fontFamily="@font/semi_bold"
             android:text="2"
-            android:textColor="@color/font"
             app:layout_constraintStart_toEndOf="@+id/textView58"
             app:layout_constraintTop_toBottomOf="@+id/seekBar5Q" />
 
@@ -39,9 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="63dp"
-            android:fontFamily="@font/semi_bold"
             android:text="3"
-            android:textColor="@color/font"
             app:layout_constraintStart_toEndOf="@+id/textView59"
             app:layout_constraintTop_toBottomOf="@+id/seekBar5Q" />
 
@@ -50,9 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="63dp"
-            android:fontFamily="@font/semi_bold"
             android:text="4"
-            android:textColor="@color/font"
             app:layout_constraintStart_toEndOf="@+id/textView60"
             app:layout_constraintTop_toTopOf="@+id/textView60" />
 
@@ -61,9 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:fontFamily="@font/semi_bold"
             android:text="5"
-            android:textColor="@color/font"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView61"
             app:layout_constraintTop_toTopOf="@+id/textView60" />
@@ -92,10 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:fontFamily="@font/bold"
             android:text="Clasifica tu producto"
-            android:textColor="@color/font"
-            android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@+id/imageButton4"
             app:layout_constraintStart_toEndOf="@+id/imageButton3"
             app:layout_constraintTop_toTopOf="parent" />
@@ -106,10 +92,7 @@
             android:layout_height="0dp"
             android:layout_marginStart="25dp"
             android:layout_marginTop="150dp"
-            android:fontFamily="@font/bold"
             android:text="de 5 preguntas"
-            android:textColor="@color/font"
-            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
@@ -121,11 +104,8 @@
             android:layout_marginStart="35dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="35dp"
-            android:fontFamily="@font/medium"
             android:text="¿Hace cuanto adquiriste la prenda?"
             android:textAlignment="center"
-            android:textColor="@color/font"
-            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView17" />
@@ -137,11 +117,9 @@
             android:layout_marginStart="35dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="35dp"
-            android:fontFamily="@font/regular"
             android:text="Por favor elige la opción más cercana"
             android:textAlignment="center"
-            android:textColor="@color/font"
-            android:textSize="14sp"
+            android:textSize="11sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -150,70 +128,60 @@
         <TextView
             android:id="@+id/textView19"
             android:layout_width="50dp"
-            android:layout_height="wrap_content"
+            android:layout_height="26dp"
             android:layout_marginStart="40dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/regular"
-            android:text="Más de 5 años"
+            android:text="Menos de 1 mes"
             android:textAlignment="center"
-            android:textColor="@color/font"
-            android:textSize="14sp"
+            android:textSize="11sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView58" />
 
         <TextView
             android:id="@+id/textView53"
             android:layout_width="48dp"
-            android:layout_height="wrap_content"
+            android:layout_height="16dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/regular"
-            android:text="5 años"
+            android:text="6 meses"
             android:textAlignment="center"
-            android:textColor="@color/font"
-            android:textSize="14sp"
+            android:textSize="11sp"
             app:layout_constraintStart_toEndOf="@+id/textView19"
             app:layout_constraintTop_toBottomOf="@+id/textView59" />
 
         <TextView
             android:id="@+id/textView55"
             android:layout_width="35dp"
-            android:layout_height="wrap_content"
+            android:layout_height="14dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/regular"
             android:text="1 año"
             android:textAlignment="center"
-            android:textColor="@color/font"
-            android:textSize="14sp"
+            android:textSize="11sp"
             app:layout_constraintStart_toEndOf="@+id/textView53"
             app:layout_constraintTop_toBottomOf="@+id/textView60" />
 
         <TextView
             android:id="@+id/textView20"
-            android:layout_width="48dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_width="38dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="35dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/regular"
-            android:text="6 meses"
+            android:text="5 años"
             android:textAlignment="center"
-            android:textColor="@color/font"
-            android:textSize="14sp"
+            android:textSize="11sp"
             app:layout_constraintStart_toEndOf="@+id/textView55"
             app:layout_constraintTop_toBottomOf="@+id/textView61" />
 
         <TextView
             android:id="@+id/textView56"
-            android:layout_width="48dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:fontFamily="@font/regular"
-            android:text="Menos de 1 mes"
+            android:layout_width="38dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="45dp"
+            android:text="Más de 5 años"
             android:textAlignment="center"
-            android:textColor="@color/font"
-            android:textSize="14sp"
+            android:textSize="11sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView62" />
 
@@ -222,11 +190,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@drawable/main_btn"
-            android:fontFamily="@font/bold"
-            android:padding="5dp"
             android:text="Continuar"
-            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView19" />
@@ -236,9 +200,8 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="120dp"
-            android:layout_marginTop="148dp"
+            android:layout_marginTop="145dp"
             app:layout_constraintEnd_toStartOf="@+id/textView17"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView13"
             app:srcCompat="@drawable/numero_5" />

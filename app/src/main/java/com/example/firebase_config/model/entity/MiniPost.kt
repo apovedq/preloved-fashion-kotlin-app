@@ -7,6 +7,5 @@ data class MiniPost (
     var postId: String = "",
     var isSelected: Boolean = false,
     var isAfavorite: Boolean = false,
-    var category: String = "",
-    var description: String = ""
+    var category: String = ""
 )
