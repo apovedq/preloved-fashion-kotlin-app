@@ -51,6 +51,8 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
+    implementation ("androidx.constraintlayout:constraintlayout:2.0.4")
+
 
     //Firebase
     implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
