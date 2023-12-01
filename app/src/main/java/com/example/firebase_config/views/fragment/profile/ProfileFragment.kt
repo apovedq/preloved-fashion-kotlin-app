@@ -82,14 +82,10 @@ class ProfileFragment : Fragment() {
         //Show the posts
 
         binding.myProdBtn.setOnClickListener {
-            currentUser?.let {
-                vm.getPosts(it.uid)
-
-                vm.myposts.observe(viewLifecycleOwner){posts ->
-                    val adapter = PostAdapterFeed(vm, posts)
-                    binding.postsRecyclerView.adapter = adapter
-                    adapter.notifyDataSetChanged()
-                }
+            vm.myposts.observe(viewLifecycleOwner){posts ->
+                val adapter = PostAdapterFeed(posts)
+                binding.postsRecyclerView.adapter = adapter
+                adapter.notifyDataSetChanged()
             }
         }
 
@@ -98,7 +94,7 @@ class ProfileFragment : Fragment() {
                 vm.getFavPosts(it.uid)
 
                 vm.myposts.observe(viewLifecycleOwner){posts ->
-                    val adapter = PostAdapterFeed(vm, posts)
+                    val adapter = PostAdapterFeed(posts)
                     binding.postsRecyclerView.adapter = adapter
                     adapter.notifyDataSetChanged()
                 }
