@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.firebase_config.model.entity.User
+import com.example.firebase_config.model.repository.PostRepository
+import com.example.firebase_config.model.repository.UserRepository
 import com.example.firebase_config.viewmodels.model.AuthState
 import com.example.firebase_config.viewmodels.model.ErrorMessage
 import com.example.firebase_config.viewmodels.model.FacebookDataCallBack
@@ -35,7 +37,7 @@ import org.json.JSONObject
 
 
 class AuthViewModel : ViewModel() {
-
+    private val userRepository = UserRepository()
     val authStateLV = MutableLiveData<AuthState>()
     val errorLV = MutableLiveData<ErrorMessage>()
     val registerStateLV = MutableLiveData<RegisterState>()
@@ -44,11 +46,11 @@ class AuthViewModel : ViewModel() {
     fun signupWithEmail(name: String, email: String, pass: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val result = Firebase.auth.createUserWithEmailAndPassword(email, pass).await()
+                val result = userRepository.createUserWithEmailAndPassword(email, pass).await()
                 val user = User(
                     name,
                     email,
-                    Firebase.auth.currentUser!!.uid,
+                    userRepository.getCurrentUserIdObligatory(),
                     "",
                     "",
                     0,
@@ -56,16 +58,13 @@ class AuthViewModel : ViewModel() {
                     "",
                     0
                 )
-                Firebase.firestore.collection("users")
-                    .document(user.userId)
-                    .set(user).await()
+                userRepository.createUserCollection().document(user.userId).set(user).await()
 
                 withContext(Dispatchers.Main) {
                     registerStateLV.value = RegisterState(result.user?.uid, true)
                 }
 
                 Log.e(">>>", "Registrado")
-                Firebase.auth.currentUser
             } catch (e: FirebaseAuthWeakPasswordException) {
                 withContext(Dispatchers.Main) {
                     errorLV.value = ErrorMessage("La contraseña es muy debil")
@@ -88,7 +87,7 @@ class AuthViewModel : ViewModel() {
         fun signIn(email: String, pass: String) {
             viewModelScope.launch(Dispatchers.IO) {
                 try {
-                    val result = Firebase.auth.signInWithEmailAndPassword(email, pass).await()
+                    val result = userRepository.signInWithEmailAndPassword(email, pass).await()
                     withContext(Dispatchers.Main) {
                         authStateLV.value = AuthState(result.user?.uid, true)
                     }
@@ -110,7 +109,7 @@ class AuthViewModel : ViewModel() {
         fun recoverPassword(email: String) {
             viewModelScope.launch(Dispatchers.IO) {
                 try {
-                    Firebase.auth.sendPasswordResetEmail(email)
+                    userRepository.sendPasswordResetEmail(email)
                     Log.e(">>>", "Correo enviado")
                 } catch (e: Exception) {
                     Log.e(">>>", "Error")
@@ -120,9 +119,9 @@ class AuthViewModel : ViewModel() {
 
         fun setUsername(username: String) {
             viewModelScope.launch(Dispatchers.IO) {
-                val uid = Firebase.auth.currentUser?.uid
+                val uid = userRepository.getCurrentUserId()
 
-                Firebase.firestore.collection("users")
+                userRepository.createUserCollection()
                     .document(uid!!)
                     .update("username", username).await()
 
@@ -167,7 +166,7 @@ class AuthViewModel : ViewModel() {
             val credential = FacebookAuthProvider.getCredential(token.token)
             viewModelScope.launch(Dispatchers.IO) {
                 try {
-                    val result = Firebase.auth.signInWithCredential(credential).await()
+                    val result = userRepository.signInWithCredential(credential).await()
                     setFacebookData(loginResult, object : FacebookDataCallBack {
                         override fun onDataReceived(name: String, email: String) {
                             val user = User(
@@ -182,7 +181,7 @@ class AuthViewModel : ViewModel() {
                                 0
                             )
                             Log.e(">>>", user.toString())
-                            Firebase.firestore.collection("users")
+                            userRepository.createUserCollection()
                                 .document(user.userId)
                                 .set(user)
                         }
@@ -214,7 +213,7 @@ class AuthViewModel : ViewModel() {
             val credential = FacebookAuthProvider.getCredential(token.token)
             viewModelScope.launch(Dispatchers.IO) {
                 try {
-                    val result = Firebase.auth.signInWithCredential(credential).await()
+                    val result = userRepository.signInWithCredential(credential).await()
 
                     withContext(Dispatchers.Main) {
                         authStateLV.value = AuthState(result.user?.uid, true)

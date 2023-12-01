@@ -36,6 +36,11 @@ class FeedFragment : Fragment() {
         return binding.root
     }
     private fun setupCategoryButtons() {
+
+        binding.buttonAll.setOnClickListener {
+            viewModel.filterPostsByCategory("Todas")
+        }
+
         // Botón para la categoría "Camisas"
         binding.buttonCamisas.setOnClickListener {
             viewModel.filterPostsByCategory("Camisas")

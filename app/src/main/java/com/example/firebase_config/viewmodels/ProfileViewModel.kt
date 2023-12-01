@@ -12,6 +12,7 @@ import com.example.firebase_config.model.entity.MiniPost
 import com.example.firebase_config.model.entity.User
 import com.example.firebase_config.model.repository.PostRepository
 import com.example.firebase_config.model.service.OnFavoritePostSelectedListener
+import com.example.firebase_config.model.repository.UserRepository
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -23,10 +24,12 @@ import kotlinx.coroutines.withContext
 import java.util.UUID
 
 class ProfileViewModel: ViewModel(), OnFavoritePostSelectedListener {
+  
     val currentUser = Firebase.auth.currentUser
     val userLD = MutableLiveData<User>()
 
     private val postRepository = PostRepository()
+    private val userRepository = UserRepository()
     private val _myposts = MutableLiveData<List<MiniPost>>()
     val myposts: LiveData<List<MiniPost>> get() = _myposts
 
@@ -39,11 +42,11 @@ class ProfileViewModel: ViewModel(), OnFavoritePostSelectedListener {
                 var uuid = UUID.randomUUID().toString()
 
                 //Cargar la imagen a storage
-                Firebase.storage.reference.child("profileImages").child(uuid).putFile(uri).await()
+                userRepository.profileImage().child(uuid).putFile(uri).await()
 
                 //Update picture url in firebase
                 currentUser?.let {
-                    Firebase.firestore.collection("users")
+                    userRepository.createUserCollection()
                         .document(it.uid)
                         .update("photo", uuid).await()
                 }
@@ -61,8 +64,7 @@ class ProfileViewModel: ViewModel(), OnFavoritePostSelectedListener {
 
             //Get user info
             currentUser?.let {
-                val doc = Firebase.firestore
-                    .collection("users")
+                val doc = userRepository.createUserCollection()
                     .document(it.uid)
                     .get().await()
                 user = doc.toObject(User::class.java)
@@ -76,7 +78,7 @@ class ProfileViewModel: ViewModel(), OnFavoritePostSelectedListener {
                     var url: Uri? = null
                     if (it.photo != null) {
                         try {
-                            val storageRef = Firebase.storage.reference.child("profileImages")
+                            val storageRef = userRepository.profileImage()
                             val imageRef = storageRef.child(it.photo)
                             url = imageRef.downloadUrl.await()
                         } catch (e: Exception) {
@@ -108,9 +110,9 @@ class ProfileViewModel: ViewModel(), OnFavoritePostSelectedListener {
 
     fun setDescription(des: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val uid = Firebase.auth.currentUser?.uid
+            val uid = userRepository.getCurrentUserId()
 
-            Firebase.firestore.collection("users")
+            userRepository.createUserCollection()
                 .document(uid!!)
                 .update("description", des).await()
         }
@@ -170,6 +172,9 @@ class ProfileViewModel: ViewModel(), OnFavoritePostSelectedListener {
                     ?.let { postRepository.removeFavoritePost(it) }
             }
         }
+
+    fun signOut() {
+        userRepository.signOut()
     }
 
 }

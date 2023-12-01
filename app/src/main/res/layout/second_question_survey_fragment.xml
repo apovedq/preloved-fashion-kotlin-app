@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,26 +16,21 @@
             android:id="@+id/textView39"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="58dp"
+            android:layout_marginStart="48dp"
+            android:fontFamily="@font/semi_bold"
             android:text="1"
+            android:textColor="@color/font"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar2Q" />
-
-        <TextView
-            android:id="@+id/textView40"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="65dp"
-            android:text="2"
-            app:layout_constraintStart_toEndOf="@+id/textView39"
             app:layout_constraintTop_toBottomOf="@+id/seekBar2Q" />
 
         <TextView
             android:id="@+id/textView41"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="63dp"
+            android:layout_marginStart="64dp"
+            android:fontFamily="@font/semi_bold"
             android:text="3"
+            android:textColor="@color/font"
             app:layout_constraintStart_toEndOf="@+id/textView40"
             app:layout_constraintTop_toBottomOf="@+id/seekBar2Q" />
 
@@ -42,8 +38,10 @@
             android:id="@+id/textView42"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="63dp"
+            android:layout_marginStart="68dp"
+            android:fontFamily="@font/semi_bold"
             android:text="4"
+            android:textColor="@color/font"
             app:layout_constraintStart_toEndOf="@+id/textView41"
             app:layout_constraintTop_toBottomOf="@+id/seekBar2Q" />
 
@@ -53,10 +51,24 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
+            android:fontFamily="@font/semi_bold"
             android:text="5"
+            android:textColor="@color/font"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/textView42"
             app:layout_constraintTop_toTopOf="@+id/textView41" />
+
+        <TextView
+            android:id="@+id/textView40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="68dp"
+            android:fontFamily="@font/semi_bold"
+            android:text="2"
+            android:textColor="@color/font"
+            app:layout_constraintStart_toEndOf="@+id/textView39"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar2Q" />
 
         <ImageButton
             android:id="@+id/imageButton3"
@@ -82,7 +94,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/semi_bold"
             android:text="Clasifica tu producto"
+            android:textColor="@color/font"
+            android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@+id/imageButton4"
             app:layout_constraintStart_toEndOf="@+id/imageButton3"
             app:layout_constraintTop_toTopOf="parent" />
@@ -93,7 +108,10 @@
             android:layout_height="0dp"
             android:layout_marginStart="25dp"
             android:layout_marginTop="150dp"
+            android:fontFamily="@font/semi_bold"
             android:text="de 5 preguntas"
+            android:textColor="@color/font"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
@@ -105,8 +123,11 @@
             android:layout_marginStart="35dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="35dp"
+            android:fontFamily="@font/medium"
             android:text="¿Cómo se encuentra el color de la ropa?"
             android:textAlignment="center"
+            android:textColor="@color/font"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView17" />
@@ -114,61 +135,73 @@
         <TextView
             android:id="@+id/textView19"
             android:layout_width="65dp"
-            android:layout_height="28dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/regular"
             android:text="Totalmente descolorido"
             android:textAlignment="center"
-            android:textSize="11sp"
+            android:textColor="@color/font"
+            android:textSize="13dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView39" />
 
         <TextView
             android:id="@+id/textView45"
             android:layout_width="59dp"
-            android:layout_height="26dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/regular"
             android:text="Muy descolorido"
             android:textAlignment="center"
-            android:textSize="11sp"
+            android:textColor="@color/font"
+            android:textSize="13dp"
             app:layout_constraintStart_toEndOf="@+id/textView19"
             app:layout_constraintTop_toBottomOf="@+id/textView39" />
 
         <TextView
             android:id="@+id/textView49"
             android:layout_width="82dp"
-            android:layout_height="27dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/regular"
             android:text="Moderadamente descolorido"
             android:textAlignment="center"
-            android:textSize="11sp"
+            android:textColor="@color/font"
+            android:textSize="13dp"
             app:layout_constraintStart_toEndOf="@+id/textView45"
             app:layout_constraintTop_toBottomOf="@+id/textView39" />
 
         <TextView
             android:id="@+id/textView50"
             android:layout_width="63dp"
-            android:layout_height="27dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/regular"
             android:text="Ligeramente descolorido"
             android:textAlignment="center"
-            android:textSize="11sp"
+            android:textColor="@color/font"
+            android:textSize="13dp"
             app:layout_constraintStart_toEndOf="@+id/textView49"
             app:layout_constraintTop_toBottomOf="@+id/textView39" />
 
         <TextView
             android:id="@+id/textView20"
             android:layout_width="35dp"
-            android:layout_height="26dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginEnd="30dp"
+            android:fontFamily="@font/regular"
             android:text="Esta intacto"
             android:textAlignment="center"
-            android:textSize="11sp"
+            android:textColor="@color/font"
+            android:textSize="13dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/textView50"
             app:layout_constraintTop_toBottomOf="@+id/textView43" />
 
@@ -177,7 +210,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:background="@drawable/main_btn"
+            android:fontFamily="@font/bold"
             android:text="Continuar"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView19" />
@@ -187,8 +223,9 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="120dp"
-            android:layout_marginTop="145dp"
+            android:layout_marginTop="148dp"
             app:layout_constraintEnd_toStartOf="@+id/textView17"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView13"
             app:srcCompat="@drawable/numero_2" />

@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:focusable="auto">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,7 +53,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:fontFamily="@font/semi_bold"
                     android:text="Categoría de prenda*"
+                    android:textColor="@color/font"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/categorySpinner"
                     app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
@@ -61,7 +65,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:fontFamily="@font/semi_bold"
                     android:text="Nombre*"
+                    android:textColor="@color/font"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/nameTxt"
                     app:layout_constraintTop_toBottomOf="@+id/categorySpinner" />
 
@@ -70,7 +77,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:fontFamily="@font/semi_bold"
                     android:text="Marca*"
+                    android:textColor="@color/font"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/brandTxt"
                     app:layout_constraintTop_toBottomOf="@+id/nameTxt" />
 
@@ -79,7 +89,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:fontFamily="@font/semi_bold"
                     android:text="Talla*"
+                    android:textColor="@color/font"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/sizeSpinner"
                     app:layout_constraintTop_toBottomOf="@+id/brandTxt" />
 
@@ -88,7 +101,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="13dp"
+                    android:fontFamily="@font/semi_bold"
                     android:text="Descripción*"
+                    android:textColor="@color/font"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/descriptionTxt"
                     app:layout_constraintTop_toBottomOf="@+id/sizeSpinner" />
 
@@ -98,7 +114,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="20dp"
+                    android:fontFamily="@font/semi_bold"
                     android:text="Género*"
+                    android:textColor="@color/font"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@+id/categorySpinner"
                     app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
@@ -145,9 +164,11 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="24dp"
                     android:ems="10"
+                    android:fontFamily="@font/regular"
                     android:hint="Ej: vestido largo"
                     android:inputType="text"
-                    android:textSize="14sp"
+                    android:textColor="@color/font"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -160,9 +181,11 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="24dp"
                     android:ems="10"
+                    android:fontFamily="@font/regular"
                     android:hint="Ej: Nike"
                     android:inputType="text"
-                    android:textSize="14sp"
+                    android:textColor="@color/font"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView12" />
@@ -175,10 +198,12 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="24dp"
                     android:ems="10"
+                    android:fontFamily="@font/regular"
                     android:gravity="start|top"
                     android:hint="Dinos los detalles de tus prendas"
                     android:inputType="textMultiLine"
-                    android:textSize="14sp"
+                    android:textColor="@color/font"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView15" />
@@ -189,7 +214,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="24dp"
+                    android:background="@drawable/main_btn"
+                    android:fontFamily="@font/bold"
                     android:text="Continuar"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -199,9 +227,12 @@
                     android:id="@+id/textView16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="110dp"
+                    android:layout_marginStart="96dp"
                     android:layout_marginTop="20dp"
+                    android:fontFamily="@font/semi_bold"
                     android:text="Nueva prenda"
+                    android:textColor="@color/font"
+                    android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/imageButton"
                     app:layout_constraintTop_toTopOf="parent" />
 

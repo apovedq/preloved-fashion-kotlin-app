@@ -22,7 +22,7 @@ class FeedViewModel: ViewModel(), OnFavoritePostSelectedListener {
     val feed: LiveData<List<MiniPost>> get() = _feed
     val postDetailId: String? = null
 
-    //Stores the post data in my varibale
+    //Stores the post data in my variable
     val postInfo = MutableLiveData<Post?>()
 
     //Stores the img url
@@ -58,6 +58,8 @@ class FeedViewModel: ViewModel(), OnFavoritePostSelectedListener {
                             tempPost.title = post.title
                             tempPost.fashionPoints = post.fashionPoints
                             tempPost.postId = post.postId
+                            tempPost.category = post.category
+                            tempPost.description = post.description
                             postsList.add(tempPost)
                         }
                     }
@@ -120,6 +122,14 @@ class FeedViewModel: ViewModel(), OnFavoritePostSelectedListener {
             withContext(Dispatchers.Main){
                 postRepository.getPostsById(post.postId).toObject(Post::class.java)
                     ?.let { postRepository.removeFavoritePost(it) }
+                    
+    fun searchPosts(input: String?) {
+        viewModelScope.launch(Dispatchers.Main) {
+            if (input.isNullOrEmpty()) {
+                _feed.value = emptyList()
+            } else {
+                val postsFound = allPosts.filter { it.title.lowercase().contains(input) || it.description.lowercase().contains(input)}
+                _feed.value = postsFound
             }
         }
     }
