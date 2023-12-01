@@ -19,7 +19,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/feedRecyclerView"
         android:layout_width="0dp"
-        android:layout_height="485dp"
+        android:layout_height="450dp"
         android:layout_marginTop="24dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
