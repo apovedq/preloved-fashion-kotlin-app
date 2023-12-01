@@ -12,6 +12,7 @@ import com.example.firebase_config.views.fragment.feed.FeedFragment
 import com.example.firebase_config.views.fragment.PostDetailsFragment.PostDetailsFragment
 import com.example.firebase_config.views.fragment.profile.DescriptionFragment
 import com.example.firebase_config.views.fragment.profile.ProfileFragment
+import com.example.firebase_config.views.fragment.search.SearchFragment
 
 class HomeActivity : AppCompatActivity() {
 
@@ -20,7 +21,6 @@ class HomeActivity : AppCompatActivity() {
     val profileFragment by lazy {
         ProfileFragment.newInstance()
     }
-
 
     val setDescriptionFragment by lazy {
         DescriptionFragment.newInstance()
@@ -36,6 +36,10 @@ class HomeActivity : AppCompatActivity() {
 
     val feedFragmentInstance: FeedFragment by lazy{
         FeedFragment.newInstance()
+    }
+
+    val searchFragment: SearchFragment by lazy{
+        SearchFragment.newInstance()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,6 +67,13 @@ class HomeActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.navigation_create_post->{
                     startActivity(Intent(this, CreatePostActivity::class.java))
+                }
+            }
+
+            //Switch to search item activity
+            when(it.itemId){
+                R.id.navigation_search->{
+                    showFragment(searchFragment)
                 }
             }
 
