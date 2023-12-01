@@ -9,6 +9,7 @@ import com.example.firebase_config.model.entity.MiniPost
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
@@ -55,4 +56,15 @@ class PostRepository {
             .child(imageId)
             .downloadUrl.await()
     }
+
+    fun uploadFavoritePost(post: Post){
+        Firebase.firestore.collection("users").document(getCurrentUserId())
+            .update("favorite", FieldValue.arrayUnion(post))
+    }
+
+    fun removeFavoritePost(post: Post) {
+        Firebase.firestore.collection("users").document(getCurrentUserId())
+            .update("favorite", FieldValue.arrayRemove(post))
+    }
+
 }
