@@ -168,11 +168,12 @@ class ProfileViewModel: ViewModel(), OnFavoritePostSelectedListener {
 
     override fun onPostDeselected(post: MiniPost) {
         viewModelScope.launch(Dispatchers.IO) {
-            withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main) {
                 postRepository.getPostsById(post.postId).toObject(Post::class.java)
                     ?.let { postRepository.removeFavoritePost(it) }
             }
         }
+    }
 
     fun signOut() {
         userRepository.signOut()

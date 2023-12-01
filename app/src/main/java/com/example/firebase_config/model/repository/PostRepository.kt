@@ -59,12 +59,12 @@ class PostRepository {
 
     fun uploadFavoritePost(post: Post){
         Firebase.firestore.collection("users").document(getCurrentUserId())
-            .update("favorite", FieldValue.arrayUnion(post))
+            .update("favorite", FieldValue.arrayUnion(post.postId))
     }
 
     fun removeFavoritePost(post: Post) {
         Firebase.firestore.collection("users").document(getCurrentUserId())
-            .update("favorite", FieldValue.arrayRemove(post))
+            .update("favorite", FieldValue.arrayRemove(post.postId))
     }
 
 }
