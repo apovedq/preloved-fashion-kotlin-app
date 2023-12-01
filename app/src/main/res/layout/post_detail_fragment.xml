@@ -11,9 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:fontFamily="@font/extra_bold"
         android:text="My Title"
         android:textColor="@color/font"
-        android:textSize="24sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainImageIV" />
@@ -32,6 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:fontFamily="@font/medium"
         android:text="Brand"
         android:textColor="@color/purple"
         android:textSize="20dp"
@@ -40,7 +42,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="96dp"
-        android:layout_height="27dp"
+        android:layout_height="0dp"
         android:layout_marginStart="150dp"
         android:layout_marginTop="75dp"
         app:cardBackgroundColor="@color/purple"
@@ -55,8 +57,10 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
+            android:fontFamily="@font/bold"
             android:text="80 FP"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -81,19 +85,23 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/regular"
         android:text="username"
         android:textColor="@color/font"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/brandTV" />
 
     <TextView
         android:id="@+id/descriptionTV"
         android:layout_width="350dp"
-        android:layout_height="57dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/regular"
         android:text="Chaqueta de cuero. Tiene cinturón y muchos cierres. Está elaborada con cuero vegano y es perfecta para darle un toque rockero a tus outfits."
         android:textColor="@color/font"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
@@ -130,9 +138,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="12dp"
+        android:fontFamily="@font/bold"
         android:text="Estado"
         android:textColor="@color/purple"
-        android:textSize="16dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView11" />
@@ -143,9 +152,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
+        android:fontFamily="@font/medium"
         android:text="6/10"
         android:textColor="@color/font"
-        android:textSize="16dp"
+        android:textSize="18dp"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView11" />
@@ -156,9 +166,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="75dp"
         android:layout_marginTop="12dp"
-        android:text="Genero"
+        android:fontFamily="@font/bold"
+        android:text="Género"
         android:textColor="@color/purple"
-        android:textSize="16dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textView71"
         app:layout_constraintTop_toBottomOf="@+id/imageView13" />
@@ -167,11 +178,12 @@
         android:id="@+id/genderTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="75dp"
+        android:layout_marginStart="84dp"
         android:layout_marginTop="40dp"
+        android:fontFamily="@font/medium"
         android:text="Unisex"
         android:textColor="@color/font"
-        android:textSize="16dp"
+        android:textSize="18dp"
         android:textStyle="normal"
         app:layout_constraintStart_toEndOf="@+id/textView71"
         app:layout_constraintTop_toBottomOf="@+id/imageView13" />
@@ -180,11 +192,12 @@
         android:id="@+id/textView71"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="90dp"
+        android:layout_marginStart="80dp"
         android:layout_marginTop="12dp"
+        android:fontFamily="@font/bold"
         android:text="Tamaño"
         android:textColor="@color/purple"
-        android:textSize="16dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textView70"
         app:layout_constraintTop_toBottomOf="@+id/imageView12" />
@@ -193,11 +206,12 @@
         android:id="@+id/sizeTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="95dp"
+        android:layout_marginStart="104dp"
         android:layout_marginTop="40dp"
+        android:fontFamily="@font/medium"
         android:text="M"
         android:textColor="@color/font"
-        android:textSize="16dp"
+        android:textSize="18dp"
         android:textStyle="normal"
         app:layout_constraintStart_toEndOf="@+id/textView70"
         app:layout_constraintTop_toBottomOf="@+id/imageView12" />
@@ -207,9 +221,11 @@
         android:layout_width="322dp"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/bg"
+        android:background="@drawable/main_btn"
+        android:fontFamily="@font/bold"
         android:text="INTERCAMBIAR"
         android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sizeTV" />
