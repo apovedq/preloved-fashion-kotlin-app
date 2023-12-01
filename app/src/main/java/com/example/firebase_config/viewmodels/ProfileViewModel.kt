@@ -18,6 +18,7 @@ import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -33,8 +34,9 @@ class ProfileViewModel: ViewModel(), OnFavoritePostSelectedListener {
     private val postRepository = PostRepository()
     private val userRepository = UserRepository()
     private val _myposts = MutableLiveData<List<MiniPost>>()
+    private val _myFavposts = MutableLiveData<List<MiniPost>>()
     val myposts: LiveData<List<MiniPost>> get() = _myposts
-
+    val myFavposts: LiveData<List<MiniPost>> get() = _myFavposts
 
     fun uploadImage(uri: Uri) {
         try {
@@ -122,19 +124,48 @@ class ProfileViewModel: ViewModel(), OnFavoritePostSelectedListener {
 
     fun getPosts(userId: String) {
         viewModelScope.launch(Dispatchers.IO) {
-
             val posts =postRepository.getPostsByUserId(userId)
-
             val querySnapshot = posts.get().await()
-
             loadPosts(querySnapshot)
         }
     }
 
     fun getFavPosts(userId: String) {
+
         viewModelScope.launch(Dispatchers.IO) {
-            postRepository.getFavPosts(userId)?.let { loadPosts(it) }
+            val postsList = mutableListOf<MiniPost>()
+            val query = userRepository.getUser(userId).await()
+            val user = query.toObject(User::class.java)
+            val favorites: List<String>? = user?.favorite
+
+            favorites?.let {
+                for (id in it){
+                    val document = postRepository.getPostsById(id)
+                    val post = document.toObject(Post::class.java)
+                    val tempPost = MiniPost()
+                    post?.let {
+                        var url = ""
+                        try {
+                            url = postRepository.getImage(post.image).toString()
+                        } catch (e: Exception) {
+                            Log.e(">>>", e.message.toString())
+                        }
+
+                        if (isURLValid(url)) {
+                            tempPost.image = url
+                            tempPost.title = post.title
+                            tempPost.fashionPoints = post.fashionPoints
+                            postsList.add(tempPost)
+                        }
+                    }
+                }
+
+                withContext(Dispatchers.Main) {
+                    _myFavposts.value = postsList
+                }
+            }
         }
+
     }
 
     private suspend fun loadPosts(querySnapshot: QuerySnapshot) {

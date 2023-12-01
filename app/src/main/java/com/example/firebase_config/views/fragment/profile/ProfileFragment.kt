@@ -3,6 +3,7 @@ package com.example.firebase_config.views.fragment.profile
 import PostAdapterFeed
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -93,7 +94,7 @@ class ProfileFragment : Fragment() {
             currentUser?.let {
                 vm.getFavPosts(it.uid)
 
-                vm.myposts.observe(viewLifecycleOwner){posts ->
+                vm.myFavposts.observe(viewLifecycleOwner){posts ->
                     val adapter = PostAdapterFeed(vm, posts)
                     binding.postsRecyclerView.adapter = adapter
                     adapter.notifyDataSetChanged()

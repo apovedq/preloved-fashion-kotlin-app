@@ -23,7 +23,7 @@ class NoClothesToExchangeFragment: Fragment() {
 
         binding.backBtn.setOnClickListener {
             val homeActivity = activity as HomeActivity
-            homeActivity.loadFragment(homeActivity.feedFragmentInstance)
+            homeActivity.showFragment(homeActivity.feedFragmentInstance)
         }
 
         return binding.root

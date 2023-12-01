@@ -2,26 +2,20 @@ package com.example.firebase_config.model.repository
 
 import android.net.Uri
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.example.firebase_config.model.dto.Post
-import com.example.firebase_config.model.entity.MiniPost
+import com.example.firebase_config.model.entity.User
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
-import java.util.UUID
 
 class PostRepository {
     companion object {
@@ -66,9 +60,4 @@ class PostRepository {
         Firebase.firestore.collection("users").document(getCurrentUserId())
             .update("favorite", FieldValue.arrayRemove(post.postId))
     }
-
-    suspend fun getFavPosts(userId: String): QuerySnapshot? {
-        return Firebase.firestore.collection("users").document(getCurrentUserId()).collection("favorite").get().await()
-    }
-
 }

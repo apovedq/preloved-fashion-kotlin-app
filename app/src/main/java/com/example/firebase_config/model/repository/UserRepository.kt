@@ -1,12 +1,14 @@
 package com.example.firebase_config.model.repository
 
 import android.provider.ContactsContract.CommonDataKinds.Email
+import com.example.firebase_config.model.dto.Post
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
@@ -49,5 +51,9 @@ class UserRepository {
 
     fun signOut() {
         Firebase.auth.signOut()
+    }
+
+    fun getUser(userId: String): Task<DocumentSnapshot> {
+        return Firebase.firestore.collection("users").document(userId).get()
     }
 }

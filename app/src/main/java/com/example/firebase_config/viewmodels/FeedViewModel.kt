@@ -9,7 +9,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.firebase_config.model.dto.Post
 import com.example.firebase_config.model.entity.MiniPost
+import com.example.firebase_config.model.entity.User
 import com.example.firebase_config.model.repository.PostRepository
+import com.example.firebase_config.model.repository.UserRepository
 import com.example.firebase_config.model.service.OnFavoritePostSelectedListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,6 +20,7 @@ import kotlinx.coroutines.withContext
 
 class FeedViewModel: ViewModel(), OnFavoritePostSelectedListener {
     private val postRepository = PostRepository()
+    private val userRepository = UserRepository()
     private val _feed = MutableLiveData<List<MiniPost>>()
     val feed: LiveData<List<MiniPost>> get() = _feed
     val postDetailId: String? = null
@@ -54,6 +57,15 @@ class FeedViewModel: ViewModel(), OnFavoritePostSelectedListener {
                         }
 
                         if(isURLValid(url)){
+                            val query = userRepository.getUser(currentUser).await()
+                            val user = query.toObject(User::class.java)
+                            val favorites: List<String>? = user?.favorite
+
+                            favorites?.let {
+                                if(it.contains(post.postId)){
+                                    tempPost.isAfavorite = true
+                                }
+                            }
                             tempPost.image = url
                             tempPost.title = post.title
                             tempPost.fashionPoints = post.fashionPoints
