@@ -26,7 +26,7 @@ class SearchFragment : Fragment() {
         binding = FragmentSearchBinding.inflate(inflater,container,false)
 
         postsVM.feed.observe(viewLifecycleOwner){posts ->
-            val adapter = PostAdapterFeed(posts)
+            val adapter = PostAdapterFeed(postsVM, posts)
             binding.searchRV.adapter = adapter
             adapter.notifyDataSetChanged()
         }
