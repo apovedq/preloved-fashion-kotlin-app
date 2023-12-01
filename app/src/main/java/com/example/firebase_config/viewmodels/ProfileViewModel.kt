@@ -14,6 +14,7 @@ import com.example.firebase_config.model.repository.PostRepository
 import com.example.firebase_config.model.service.OnFavoritePostSelectedListener
 import com.example.firebase_config.model.repository.UserRepository
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -121,35 +122,47 @@ class ProfileViewModel: ViewModel(), OnFavoritePostSelectedListener {
 
     fun getPosts(userId: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val posts = postRepository.getPostsByUserId(userId)
+
+            val posts =postRepository.getPostsByUserId(userId)
 
             val querySnapshot = posts.get().await()
-            val postsList = mutableListOf<MiniPost>()
 
-            for (document in querySnapshot.documents) {
-                val post = document.toObject(Post::class.java)
-                val tempPost = MiniPost()
+            loadPosts(querySnapshot)
+        }
+    }
 
-                post?.let {
-                    var url = ""
-                    try {
-                        url = postRepository.getImage(post.image).toString()
-                    } catch (e: Exception) {
-                        Log.e(">>>", e.message.toString())
-                    }
+    fun getFavPosts(userId: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            postRepository.getFavPosts(userId)?.let { loadPosts(it) }
+        }
+    }
 
-                    if (isURLValid(url)) {
-                        tempPost.image = url
-                        tempPost.title = post.title
-                        tempPost.fashionPoints = post.fashionPoints
-                        postsList.add(tempPost)
-                    }
+    private suspend fun loadPosts(querySnapshot: QuerySnapshot) {
+        val postsList = mutableListOf<MiniPost>()
+
+        for (document in querySnapshot.documents) {
+            val post = document.toObject(Post::class.java)
+            val tempPost = MiniPost()
+
+            post?.let {
+                var url = ""
+                try {
+                    url = postRepository.getImage(post.image).toString()
+                } catch (e: Exception) {
+                    Log.e(">>>", e.message.toString())
+                }
+
+                if (isURLValid(url)) {
+                    tempPost.image = url
+                    tempPost.title = post.title
+                    tempPost.fashionPoints = post.fashionPoints
+                    postsList.add(tempPost)
                 }
             }
+        }
 
-            withContext(Dispatchers.Main) {
-                _myposts.value = postsList
-            }
+        withContext(Dispatchers.Main) {
+            _myposts.value = postsList
         }
     }
 

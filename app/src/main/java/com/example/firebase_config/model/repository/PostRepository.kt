@@ -67,4 +67,8 @@ class PostRepository {
             .update("favorite", FieldValue.arrayRemove(post.postId))
     }
 
+    suspend fun getFavPosts(userId: String): QuerySnapshot? {
+        return Firebase.firestore.collection("users").document(getCurrentUserId()).collection("favorite").get().await()
+    }
+
 }
