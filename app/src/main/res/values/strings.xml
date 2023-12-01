@@ -4,4 +4,8 @@
     <string name="facebook_app_id">1780495619050687</string>
     <string name="fb_login_protocol_scheme">fb1234</string>
     <string name="facebook_client_token">5691193cbf399719eb80809aa4b20e75</string>
+    <string name="intercambios">Intercambios</string>
+    <string name="notificaciones">Notificaciones</string>
+    <string name="aqui_van_los_intercambios">Aquí van los intercambios</string>
+    <string name="aqui_van_las_notificaciones">Aquí van las notificaciones</string>
 </resources>
