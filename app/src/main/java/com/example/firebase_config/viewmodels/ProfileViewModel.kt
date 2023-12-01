@@ -11,7 +11,6 @@ import com.example.firebase_config.model.dto.Post
 import com.example.firebase_config.model.entity.MiniPost
 import com.example.firebase_config.model.entity.User
 import com.example.firebase_config.model.repository.PostRepository
-import com.example.firebase_config.model.service.OnFavoritePostSelectedListener
 import com.example.firebase_config.model.repository.UserRepository
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -23,8 +22,8 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.util.UUID
 
-class ProfileViewModel: ViewModel(), OnFavoritePostSelectedListener {
-  
+class ProfileViewModel : ViewModel() {
+
     val currentUser = Firebase.auth.currentUser
     val userLD = MutableLiveData<User>()
 
@@ -156,22 +155,6 @@ class ProfileViewModel: ViewModel(), OnFavoritePostSelectedListener {
         return url.isNotEmpty() && URLUtil.isNetworkUrl(url)
     }
 
-    override fun onPostSelected(post: MiniPost) {
-        viewModelScope.launch(Dispatchers.IO) {
-            withContext(Dispatchers.Main){
-                postRepository.getPostsById(post.postId).toObject(Post::class.java)
-                    ?.let { postRepository.uploadFavoritePost(it) }
-            }
-        }
-    }
-
-    override fun onPostDeselected(post: MiniPost) {
-        viewModelScope.launch(Dispatchers.IO) {
-            withContext(Dispatchers.Main){
-                postRepository.getPostsById(post.postId).toObject(Post::class.java)
-                    ?.let { postRepository.removeFavoritePost(it) }
-            }
-        }
 
     fun signOut() {
         userRepository.signOut()
