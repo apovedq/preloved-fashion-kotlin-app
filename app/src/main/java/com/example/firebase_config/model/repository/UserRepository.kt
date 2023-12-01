@@ -7,6 +7,7 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
@@ -14,6 +15,9 @@ import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.tasks.await
 
 class UserRepository {
+    companion object {
+        const val GET_ALL_USERS = "users"
+    }
 
     fun createUserWithEmailAndPassword(email: String, pass: String): Task<AuthResult> {
         return Firebase.auth.createUserWithEmailAndPassword(email, pass)
@@ -25,6 +29,12 @@ class UserRepository {
 
     fun getCurrentUserId(): String? {
         return Firebase.auth.currentUser?.uid
+    }
+
+    fun getCurrentUser(): Query {
+        val userId = getCurrentUserId()
+        return Firebase.firestore.collection(GET_ALL_USERS)
+            .whereEqualTo("userId", userId)
     }
 
     fun createUserCollection(): CollectionReference {
