@@ -7,7 +7,7 @@
         android:id="@+id/textViewNotificaciones"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/aqui_van_los_intercambios"
+        android:text="@string/aqui_van_las_notificaciones"
         android:gravity="center"
         android:layout_gravity="center"/>
 
